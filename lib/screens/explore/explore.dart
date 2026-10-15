@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-import 'package:just_audio/just_audio.dart';
+import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
 import 'package:kids_learning_app/utils/constant/constants.dart';
 
@@ -13,8 +12,6 @@ class PuzzleScreen extends StatefulWidget {
 }
 
 class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMixin {
-  late FlutterTts _flutterTts;
-  late AudioPlayer _audioPlayer;
   late AnimationController _mainController;
   late AnimationController _confettiController;
   late AnimationController _bounceController;
@@ -29,7 +26,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   bool _isInPuzzle = false;
   int _currentPuzzleIndex = 0;
   int _score = 0;
-  int _attempts = 0;
   int _streak = 0;
   int _maxStreak = 0;
   bool _answered = false;
@@ -38,7 +34,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   List<String> _options = [];
   Color _bgColor = const Color(0xFFFFF3E0);
   List<Color> _optionColors = [];
-  bool _showResult = false;
   int _totalStars = 0;
   bool _isLoading = true;
 
@@ -76,9 +71,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _flutterTts = FlutterTts();
-    _audioPlayer = AudioPlayer();
-    _setupTts();
     _loadAllPuzzles();
 
     _mainController = AnimationController(
@@ -114,17 +106,9 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     _bounceController.repeat(reverse: true);
   }
 
-  Future<void> _setupTts() async {
-    await _flutterTts.setLanguage("en-US");
-    await _flutterTts.setSpeechRate(0.5);
-    await _flutterTts.setPitch(1.2);
-    await _flutterTts.setVolume(1.0);
-  }
-
   @override
   void dispose() {
-    _flutterTts.stop();
-    _audioPlayer.dispose();
+    AppAudio.instance.stop();
     _mainController.dispose();
     _confettiController.dispose();
     _bounceController.dispose();
@@ -336,15 +320,18 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
       _isInPuzzle = true;
       _currentPuzzleIndex = 0;
       _score = 0;
-      _attempts = 0;
       _streak = 0;
       _maxStreak = 0;
       _totalStars = 0;
       _bgColor = const Color(0xFFFFF3E0);
-      _showResult = false;
       _loadPuzzle();
     });
-    _flutterTts.speak("Let's solve $_selectedCategory puzzles!");
+    _say("Let's solve $_selectedCategory puzzles!");
+  }
+
+  /// Speaks through the shared TTS unless the child muted the sound.
+  void _say(String text) {
+    if (_isSoundEnabled) AppAudio.instance.speak(text);
   }
 
   void _loadPuzzle() {
@@ -363,7 +350,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     });
     _mainController.reset();
     _mainController.forward();
-    _flutterTts.speak(puzzle['question']);
+    _say(puzzle['question']);
   }
 
   void _checkAnswer(int index) {
@@ -376,7 +363,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
       _answered = true;
       _selectedOptionIndex = index;
       _isCorrect = isCorrect;
-      _attempts++;
       if (isCorrect) {
         final bonus = (_streak * 2);
         _score += 10 + bonus;
@@ -385,7 +371,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
         _bgColor = Colors.green.shade50;
         _optionColors[index] = Colors.green;
         _totalStars++;
-        _playSound(true);
         _confettiController.forward().then((_) => _confettiController.reset());
       } else {
         _streak = 0;
@@ -395,15 +380,14 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
         if (correctIndex >= 0 && correctIndex < _optionColors.length) {
           _optionColors[correctIndex] = Colors.green;
         }
-        _playSound(false);
       }
     });
 
     if (isCorrect) {
       final streakMsg = _streak > 3 ? " $_streak in a row! 🔥" : "";
-      _flutterTts.speak("Correct!$streakMsg Amazing! 🌟");
+      _say("Correct!$streakMsg Amazing! 🌟");
     } else {
-      _flutterTts.speak("Oops! The correct answer is ${puzzle['answer']}. 💪");
+      _say("Oops! The correct answer is ${puzzle['answer']}. 💪");
     }
 
     Future.delayed(const Duration(seconds: 1), () {
@@ -414,12 +398,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
         });
       }
     });
-  }
-
-  void _playSound(bool correct) async {
-    try {
-      // Add sound assets here
-    } catch (e) {}
   }
 
   void _showResults() {
@@ -655,7 +633,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(15),
             ),
             child: const Text('🧩', style: TextStyle(fontSize: 28)),
@@ -671,7 +649,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                 ),
                 Text(
                   'Tap any category to start 🎯',
-                  style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 13),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 13),
                 ),
               ],
             ),
@@ -690,17 +668,17 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [color.withOpacity(0.3), color.withOpacity(0.1)],
+            colors: [color.withValues(alpha: 0.3), color.withValues(alpha: 0.1)],
           ),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.3),
+              color: color.withValues(alpha: 0.3),
               blurRadius: 15,
               spreadRadius: 2,
               offset: const Offset(0, 6),
             ),
           ],
-          border: Border.all(color: color.withOpacity(0.3), width: 2),
+          border: Border.all(color: color.withValues(alpha: 0.3), width: 2),
         ),
         child: Stack(
           children: [
@@ -712,7 +690,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                 height: 60,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                 ),
               ),
             ),
@@ -724,7 +702,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                 height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: color.withOpacity(0.1),
+                  color: color.withValues(alpha: 0.1),
                 ),
               ),
             ),
@@ -759,7 +737,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
@@ -826,7 +804,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                '$_selectedCategory',
+                _selectedCategory,
                 style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -842,7 +820,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
             margin: const EdgeInsets.only(right: 12),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -873,7 +851,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       ),
@@ -923,7 +901,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.orange.withOpacity(0.2),
+                            color: Colors.orange.withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
@@ -958,8 +936,8 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                           boxShadow: [
                             BoxShadow(
                               color: _answered
-                                  ? (_isCorrect ? Colors.green.withOpacity(0.2) : Colors.red.withOpacity(0.2))
-                                  : Colors.black.withOpacity(0.05),
+                                  ? (_isCorrect ? Colors.green.withValues(alpha: 0.2) : Colors.red.withValues(alpha: 0.2))
+                                  : Colors.black.withValues(alpha: 0.05),
                               blurRadius: 15,
                               spreadRadius: 2,
                               offset: const Offset(0, 6),
@@ -980,7 +958,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                               Container(
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                  color: puzzleBgColor.withOpacity(0.1),
+                                  color: puzzleBgColor.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Text(
@@ -1034,7 +1012,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                                 margin: const EdgeInsets.only(top: 8),
                                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                                 decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(0.1),
+                                  color: Colors.green.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(15),
                                   border: Border.all(color: Colors.green),
                                 ),
@@ -1073,7 +1051,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     itemCount: _options.length,
                     itemBuilder: (context, index) {
                       final isSelected = _selectedOptionIndex == index;
-                      final showCorrect = _answered && isSelected && _isCorrect;
                       final showWrong = _answered && isSelected && !_isCorrect;
                       final isCorrectAnswer = _answered && _options[index] == puzzle['answer'];
 
@@ -1111,7 +1088,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                                   border: Border.all(color: borderColor, width: 3),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: borderColor.withOpacity(0.2),
+                                      color: borderColor.withValues(alpha: 0.2),
                                       blurRadius: 8,
                                       offset: const Offset(0, 4),
                                     ),
@@ -1197,7 +1174,7 @@ class ConfettiPainter extends CustomPainter {
       final colorIndex = random.nextInt(colors.length);
       final shape = random.nextInt(3);
 
-      paint.color = colors[colorIndex].withOpacity(0.8 * progress);
+      paint.color = colors[colorIndex].withValues(alpha: 0.8 * progress);
 
       canvas.save();
       canvas.translate(x, y);

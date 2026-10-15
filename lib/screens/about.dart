@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
+  const AboutPage({super.key});
 
   @override
   State<AboutPage> createState() => _AboutPageState();
@@ -66,7 +66,7 @@ class _AboutPageState extends State<AboutPage>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
@@ -143,7 +143,7 @@ class _AboutPageState extends State<AboutPage>
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.orange.withOpacity(0.3),
+            color: Colors.orange.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 5,
             offset: const Offset(0, 8),
@@ -183,7 +183,7 @@ class _AboutPageState extends State<AboutPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Text(
@@ -211,10 +211,10 @@ class _AboutPageState extends State<AboutPage>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.3),
+          color: Colors.white.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -250,14 +250,14 @@ class _AboutPageState extends State<AboutPage>
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 15,
             spreadRadius: 2,
             offset: const Offset(0, 5),
           ),
         ],
         border: Border.all(
-          color: const Color(0xFFFF6B6B).withOpacity(0.2),
+          color: const Color(0xFFFF6B6B).withValues(alpha: 0.2),
           width: 2,
         ),
       ),
@@ -317,7 +317,7 @@ class _AboutPageState extends State<AboutPage>
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.blue.withOpacity(0.1),
+            color: Colors.blue.withValues(alpha: 0.1),
             blurRadius: 15,
             spreadRadius: 2,
             offset: const Offset(0, 5),
@@ -391,7 +391,7 @@ class _AboutPageState extends State<AboutPage>
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 15,
             spreadRadius: 2,
             offset: const Offset(0, 5),
@@ -448,7 +448,7 @@ class _AboutPageState extends State<AboutPage>
         color: Colors.grey.shade50,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color(0xFF4DD0E1).withOpacity(0.3),
+          color: const Color(0xFF4DD0E1).withValues(alpha: 0.3),
           width: 1,
         ),
       ),
@@ -513,7 +513,7 @@ class _AboutPageState extends State<AboutPage>
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.orange.withOpacity(0.3),
+            color: Colors.orange.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 5,
             offset: const Offset(0, 8),
@@ -544,7 +544,7 @@ class _AboutPageState extends State<AboutPage>
               Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Text(
@@ -558,7 +558,7 @@ class _AboutPageState extends State<AboutPage>
           Text(
             "Made with ❤️ for Kids",
             style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               fontSize: 14,
             ),
           ),
@@ -571,7 +571,7 @@ class _AboutPageState extends State<AboutPage>
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.5),
+        color: Colors.white.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.grey.shade200,
@@ -597,10 +597,7 @@ class _AboutPageState extends State<AboutPage>
               Text("⭐"),
               SizedBox(width: 2),
               Text("⭐"),
-              SizedBox(width: 2),
-              Text("⭐"),
-              SizedBox(width: 2),
-              Text("⭐"),
+
             ],
           ),
         ],

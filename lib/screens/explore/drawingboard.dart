@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawingBoardPage extends StatelessWidget {
-  const DrawingBoardPage({Key? key}) : super(key: key);
+  const DrawingBoardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class DrawingBoardPage extends StatelessWidget {
 }
 
 class DrawingBoard extends StatefulWidget {
-  const DrawingBoard({Key? key}) : super(key: key);
+  const DrawingBoard({super.key});
 
   @override
   State<DrawingBoard> createState() => _DrawingBoardState();
@@ -125,24 +125,20 @@ class _DrawingBoardState extends State<DrawingBoard>
       appBar: AppBar(
         backgroundColor: const Color(0xFFFF6B6B),
         elevation: 0,
-        title: Row(
-          children: [
-            const Text(
-              "🎨 Fun Drawing!",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 24,
-                shadows: [
-                  Shadow(
-                    blurRadius: 10,
-                    color: Colors.black26,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+        title: Text(
+          "🎨 Fun Drawing!",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 24,
+            shadows: [
+              Shadow(
+                blurRadius: 10,
+                color: Colors.black26,
+                offset: Offset(0, 2),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         centerTitle: true,
         actions: [
@@ -179,7 +175,7 @@ class _DrawingBoardState extends State<DrawingBoard>
               borderRadius: BorderRadius.circular(25),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 15,
                   spreadRadius: 2,
                   offset: const Offset(0, 5),
@@ -241,11 +237,11 @@ class _DrawingBoardState extends State<DrawingBoard>
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.95),
+                color: Colors.white.withValues(alpha: 0.95),
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -362,7 +358,7 @@ class _DrawingBoardState extends State<DrawingBoard>
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: isEraser
-                            ? Colors.orange.withOpacity(0.3)
+                            ? Colors.orange.withValues(alpha: 0.3)
                             : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
@@ -391,11 +387,11 @@ class _DrawingBoardState extends State<DrawingBoard>
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.symmetric(vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.95),
+                color: Colors.white.withValues(alpha: 0.95),
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -407,7 +403,7 @@ class _DrawingBoardState extends State<DrawingBoard>
                   children: [
                     const SizedBox(width: 12),
                     // Color palette
-                    ...colors.map((c) => _colorDot(c)).toList(),
+                    ...colors.map(_colorDot),
                     const SizedBox(width: 12),
                   ],
                 ),
@@ -422,7 +418,7 @@ class _DrawingBoardState extends State<DrawingBoard>
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, -4),
             ),
@@ -568,14 +564,14 @@ class _DrawingBoardState extends State<DrawingBoard>
           boxShadow: isSelected
               ? [
             BoxShadow(
-              color: color.withOpacity(0.4),
+              color: color.withValues(alpha: 0.4),
               blurRadius: 10,
               spreadRadius: 2,
             ),
           ]
               : [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 4,
             ),
           ],

@@ -37,15 +37,9 @@ dependencies:
   flutter_svg: ^2.3.0
   just_audio: ^0.10.5
   flutter_tts: ^4.2.5
-  card_swiper: ^3.0.1
-  flutter_card_swiper: ^7.2.0
-  adaptive_theme: ^3.7.2
   fluttertoast: ^9.0.0
   animated_text_kit: ^4.3.0
-  google_nav_bar: ^5.0.7
   font_awesome_flutter: ^11.0.0
-  flutter_bloc_cli: ^1.0.5
-  shared_preferences_android: ^2.4.23
   shared_preferences: ^2.5.4
   provider: ^6.1.5+1
   flutter_bloc: ^9.1.1

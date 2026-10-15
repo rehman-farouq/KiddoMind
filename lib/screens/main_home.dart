@@ -1,80 +1,45 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:kids_learning_app/cubit/index_cubit.dart';
-import 'package:kids_learning_app/screens/about.dart';
-import 'package:kids_learning_app/screens/explore/explore.dart';
 import 'package:kids_learning_app/screens/home.dart';
-import 'package:kids_learning_app/widgets/drawer.dart';
 
+/// Home wrapper: press back twice to exit.
 class MainHome extends StatefulWidget {
-  final AdaptiveThemeMode? savedThemeMode;
-
-  const MainHome({super.key, this.savedThemeMode});
+  const MainHome({super.key});
 
   @override
   State<MainHome> createState() => _MainHomeState();
 }
 
 class _MainHomeState extends State<MainHome> {
-  DateTime? currentBackPressTime;
+  DateTime? _lastBackPress;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  void _onBack(bool didPop, Object? result) {
+    if (didPop) return;
 
-  bool _onBackPressed(bool canPop) {
-    DateTime now = DateTime.now();
+    final now = DateTime.now();
+    final shouldExit = _lastBackPress != null &&
+        now.difference(_lastBackPress!) <= const Duration(seconds: 2);
 
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
-      currentBackPressTime = now;
-
-      Fluttertoast.showToast(
-        msg: "Press back again to exit 🧸",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-      );
-
-      return false;
+    if (shouldExit) {
+      SystemNavigator.pop();
+      return;
     }
 
-    return true;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    _lastBackPress = now;
+    Fluttertoast.showToast(
+      msg: 'Press back again to exit 🧸',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (didPop) => _onBackPressed(didPop),
-      child: AdaptiveTheme(
-        light: ThemeData(
-          brightness: Brightness.light,
-          scaffoldBackgroundColor: const Color(0xFFFFF8E1),
-        ),
-        dark: ThemeData.dark(),
-        initial: widget.savedThemeMode ?? AdaptiveThemeMode.light,
-        builder: (theme, darkTheme) {
-          return BlocProvider(
-            create: (context) => IndexCubit(),
-            child: BlocBuilder<IndexCubit, int>(
-              builder: (context, index) {
-                return Scaffold(
-                  backgroundColor: const Color(0xFFFFF8E1),
-                  body: const MyHomePage(),
-                  drawer: const MyDrawer(),
-                );
-              },
-            ),
-          );
-        },
-      ),
+      canPop: false,
+      onPopInvokedWithResult: _onBack,
+      child: const MyHomePage(),
     );
   }
 }

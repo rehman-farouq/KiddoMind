@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kids_learning_app/core/progress_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
 import 'package:kids_learning_app/utils/constant/const_dimensions.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 import '../widgets/drawer.dart';
-import 'dart:math';
 
 // ========== HELPER CLASS FOR CLEAN CATEGORY DATA ==========
 class CategoryItem {
@@ -24,8 +25,21 @@ class CategoryItem {
   });
 }
 
+/// Progress id of each learning module, by route.
+const Map<String, String> _moduleIdByRoute = {
+  AllRoutesConstant.atozRoute: 'atoz',
+  AllRoutesConstant.animalRoute: 'animals',
+  AllRoutesConstant.partsRoute: 'parts',
+  AllRoutesConstant.birdsRoute: 'birds',
+  AllRoutesConstant.colourRoute: 'colours',
+  AllRoutesConstant.fruitRoute: 'fruits',
+  AllRoutesConstant.solarRoute: 'planets',
+  AllRoutesConstant.countingRoute: 'counting',
+  AllRoutesConstant.tableRoute: 'table',
+};
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -208,18 +222,21 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
             const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                "${_shuffledCategories.length}",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
+            Consumer<ProgressProvider>(
+              builder: (context, progress, _) => Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  '🔥 ${progress.streak}   ⭐ ${progress.stars}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ),
@@ -277,11 +294,13 @@ class _MyHomePageState extends State<MyHomePage>
                           ),
                           itemCount: _shuffledCategories.length,
                           itemBuilder: (context, index) {
-                            return _buildCategoryCard(
-                              context: context,
-                              category: _shuffledCategories[index],
-                              index: index,
-                            );
+                            return Builder(
+                                                              builder: (context) => _buildCategoryCard(
+                                                                context: context,
+                                                                category: _shuffledCategories[index],
+                                                                index: index,
+                                                              ),
+                                                       );
                           },
                         ),
                       ),
@@ -309,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage>
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.orange.withOpacity(0.3),
+            color: Colors.orange.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 5,
             offset: const Offset(0, 8),
@@ -321,7 +340,7 @@ class _MyHomePageState extends State<MyHomePage>
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text(
@@ -345,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage>
                 Text(
                   "Tap any card to start learning 🎯",
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 13,
                   ),
                 ),
@@ -362,6 +381,10 @@ class _MyHomePageState extends State<MyHomePage>
     required CategoryItem category,
     required int index,
   }) {
+    final moduleId = _moduleIdByRoute[category.route];
+    final done = moduleId != null &&
+        context.select<ProgressProvider, bool>((p) => p.isCompleted(moduleId));
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -382,14 +405,14 @@ class _MyHomePageState extends State<MyHomePage>
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
-              color: category.color.withOpacity(0.4),
+              color: category.color.withValues(alpha: 0.4),
               blurRadius: 15,
               spreadRadius: 2,
               offset: const Offset(0, 8),
             ),
           ],
           border: Border.all(
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white.withValues(alpha: 0.8),
             width: 3,
           ),
         ),
@@ -425,12 +448,29 @@ class _MyHomePageState extends State<MyHomePage>
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.4),
-                      Colors.black.withOpacity(0.7),
+                      Colors.black.withValues(alpha: 0.4),
+                      Colors.black.withValues(alpha: 0.7),
                     ],
                   ),
                 ),
               ),
+              if (done)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  ),
+                ),
               // Content
               Padding(
                 padding: const EdgeInsets.all(12),
@@ -441,7 +481,11 @@ class _MyHomePageState extends State<MyHomePage>
                     // Emoji with animation
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      transform: Matrix4.identity()..scale(_isImageClicked[index] ? 0.8 : 1.0),
+                      transform: Matrix4.diagonal3Values(
+                        _isImageClicked[index] ? 0.8 : 1.0,
+                        _isImageClicked[index] ? 0.8 : 1.0,
+                        1.0,
+                      ),
                       child: Text(
                         category.emoji,
                         style: const TextStyle(
@@ -478,7 +522,7 @@ class _MyHomePageState extends State<MyHomePage>
                       category.shortDesc,
                       style: TextStyle(
                         fontSize: 10,
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                         shadows: [
                           Shadow(
                             blurRadius: 6,
@@ -496,7 +540,7 @@ class _MyHomePageState extends State<MyHomePage>
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.25),
+                        color: Colors.white.withValues(alpha: 0.25),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -505,7 +549,7 @@ class _MyHomePageState extends State<MyHomePage>
                           Text(
                             "Explore",
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.9),
+                              color: Colors.white.withValues(alpha: 0.9),
                               fontSize: 8,
                               fontWeight: FontWeight.w600,
                             ),
@@ -513,7 +557,7 @@ class _MyHomePageState extends State<MyHomePage>
                           const SizedBox(width: 4),
                           Icon(
                             Icons.arrow_forward_rounded,
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             size: 10,
                           ),
                         ],

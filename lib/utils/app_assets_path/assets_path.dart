@@ -1,7 +1,6 @@
 class AssetsPath {
   //Image assets
   static const String _images = 'assets/images/';
-  static const String _flowerImages = 'assets/images/flowers/';
   static const String _alphabetImages = 'assets/images/alphabet/';
   static const String _animalImages = 'assets/images/animal/';
   static const String _birdImages = 'assets/images/birds/';
@@ -42,10 +41,6 @@ class AssetsPath {
 
   static String getColoursImage(String name) {
     return _coloursImages + name;
-  }
-
-  static String getFlowerImage(String name) {
-    return _flowerImages + name;
   }
 
   //Sound assets
@@ -238,24 +233,6 @@ class ColorImages {
   static const String violet = 'violet.svg';
   static const String white = 'white.svg';
   static const String yellow = 'yellow.svg';
-}
-
-class Flowers {
-  static const String flowerBanner = 'flowers.jpg';
-  static const String daisy = 'daisy.svg';
-  static const String hibiscus = 'hibiscus.svg';
-  static const String lavender = 'lavender.svg';
-  static const String lily = 'lily.svg';
-  static const String marigold = 'marigold.svg';
-  static const String rose = 'rose.svg';
-  static const String sunflower = 'sunflower.svg';
-  static const String tulip = 'tulip.svg';
-  static const String dandelion = 'dandelion.svg';
-  static const String jasmine = 'jasmine.svg';
-  static const String lotus = 'lotus.svg';
-  static const String carnation = 'carnation.svg';
-  static const String poppy = 'poppy.svg';
-  static const String daffodil = 'daffodil.svg';
 }
 
 class SolarSystem {

@@ -3,13 +3,9 @@ import 'package:kids_learning_app/model/animal_model.dart';
 import 'package:kids_learning_app/model/bird_model.dart';
 import 'package:kids_learning_app/model/fruit_model.dart';
 import 'package:kids_learning_app/model/itemdata_model.dart';
-import 'package:kids_learning_app/model/occupation_model.dart';
 import 'package:kids_learning_app/model/question_model.dart';
-import 'package:kids_learning_app/model/season_model.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
-import '../../model/colours_model.dart';
-import '../../model/flower_model.dart';
 import '../../model/planet_model.dart';
 import '../../model/module.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
@@ -70,131 +66,6 @@ class AppConstants {
       svgAsset: AssetsPath.getSolarImage(SolarSystem.neptune),
       description: 'Neptune is the farthest planet from the Sun.',
       backgroundColor: const Color.fromARGB(255, 64, 90, 200),
-    ),
-  ];
-
-  ///  flowers
-
-  static List<Flower> flowers = [
-    Flower(
-      name: "Rose",
-      resource: AssetsPath.getFlowerImage(Flowers.rose),
-      background: Colors.redAccent,
-    ),
-    Flower(
-      name: "Sunflower",
-      resource: AssetsPath.getFlowerImage(Flowers.sunflower),
-      background: Colors.yellowAccent,
-    ),
-    Flower(
-      name: "Lily",
-      resource: AssetsPath.getFlowerImage(Flowers.lily),
-      background: Colors.greenAccent,
-    ),
-    Flower(
-      name: "Marigold",
-      resource: AssetsPath.getFlowerImage(Flowers.marigold),
-      background: Colors.yellow,
-    ),
-    Flower(
-      name: "Carnation",
-      resource: AssetsPath.getFlowerImage(Flowers.carnation),
-      background: Colors.redAccent,
-    ),
-    Flower(
-      name: "Daffodil",
-      resource: AssetsPath.getFlowerImage(Flowers.daffodil),
-      background: Colors.purpleAccent,
-    ),
-    Flower(
-      name: "Daisy",
-      resource: AssetsPath.getFlowerImage(Flowers.daisy),
-      background: Colors.green,
-    ),
-    Flower(
-      name: "Poppy",
-      resource: AssetsPath.getFlowerImage(Flowers.poppy),
-      background: Colors.redAccent,
-    ),
-    Flower(
-      name: "Tulip",
-      resource: AssetsPath.getFlowerImage(Flowers.tulip),
-      background: Colors.pink,
-    ),
-    Flower(
-      name: "Lavender",
-      resource: AssetsPath.getFlowerImage(Flowers.lavender),
-      background: Colors.purple,
-    ),
-    Flower(
-      name: "Hibiscus",
-      resource: AssetsPath.getFlowerImage(Flowers.hibiscus),
-      background: Colors.red,
-    ),
-  ];
-
-  /// colors
-
-  static List<Colours> colours = [
-    Colours(
-      name: 'Blue',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.blue),
-      bgColor: Colors.lightBlueAccent,
-      fontColor: Colors.lightBlueAccent,
-    ),
-    Colours(
-      name: 'Yellow',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.yellow),
-      bgColor: Colors.yellow.shade600,
-      fontColor: Colors.yellow.shade600,
-    ),
-    Colours(
-      name: 'Black',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.black),
-      bgColor: Colors.black,
-      fontColor: Colors.black,
-    ),
-    Colours(
-      name: 'Green',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.green),
-      bgColor: Colors.green,
-      fontColor: Colors.green,
-    ),
-    Colours(
-      name: 'Pink',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.pink),
-      bgColor: Colors.pink.shade300,
-      fontColor: Colors.pink.shade300,
-    ),
-    Colours(
-      name: 'White',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.white),
-      bgColor: Colors.grey.shade400,
-      fontColor: Colors.grey.shade400,
-    ),
-    Colours(
-      name: 'Red',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.red),
-      bgColor: Colors.red,
-      fontColor: Colors.red,
-    ),
-    Colours(
-      name: 'Violet',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.violet),
-      bgColor: Colors.deepPurple,
-      fontColor: Colors.deepPurple,
-    ),
-    Colours(
-      name: 'Brown',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.brown),
-      bgColor: const Color(0xFF964B00),
-      fontColor: const Color(0xFF964B00),
-    ),
-    Colours(
-      name: 'Orange',
-      jpgAsset: AssetsPath.getColoursImage(ColorImages.orange),
-      bgColor: Colors.orange,
-      fontColor: Colors.orange,
     ),
   ];
 
@@ -745,148 +616,6 @@ class AppConstants {
     ),
   ];
 
-  /// seasons
-
-  static List<Season> seasons = [
-    Season(
-      name: 'Spring',
-      description:
-          'Spring is the season of new beginnings. Fresh buds bloom and animals awaken.',
-      imageAsset: 'assets/seasons/spring.svg',
-      backgroundColor: Colors.lightGreen,
-    ),
-    Season(
-      name: 'Summer',
-      description:
-          'Summer is the hottest of the four temperate seasons, falling after spring and before autumn.',
-      imageAsset: 'assets/seasons/summer.svg',
-      backgroundColor: Colors.yellowAccent.shade400,
-    ),
-    Season(
-      name: 'Autumn',
-      description:
-          'Autumn is the season of the year between summer and winter, during which temperatures gradually decrease.',
-      imageAsset: 'assets/seasons/autumn.svg',
-      backgroundColor: Colors.orangeAccent,
-    ),
-    Season(
-      name: 'Winter',
-      description:
-          'Winter is the coldest season of the year in polar and temperate zones.',
-      imageAsset: 'assets/seasons/winter.svg',
-      backgroundColor: Colors.lightBlue,
-    ),
-  ];
-
-  ///  occupations
-
-  static final List<Occupation> occupations = [
-    Occupation(
-      name: "Doctor",
-      description:
-          "A doctor works in a hospital and helps people get better when they are sick.",
-      svgAsset: "assets/occupations/doctor.svg",
-      backgroundColor: Colors.lightBlue.shade200,
-    ),
-    Occupation(
-      name: "Teacher",
-      description:
-          "A teacher works in a school and teaches children how to read and write.",
-      svgAsset: "assets/occupations/teacher.svg",
-      backgroundColor: Colors.yellow.shade100,
-    ),
-    Occupation(
-      name: "Police Officer",
-      description:
-          "A police officer works in the police station and catches thieves.",
-      svgAsset: "assets/occupations/police.svg",
-      backgroundColor: Colors.green.shade200,
-    ),
-    Occupation(
-      name: "Engineer",
-      description:
-          "An engineer works in many places and build machines, buildings and bridges.",
-      svgAsset: "assets/occupations/engineer.svg",
-      backgroundColor: Colors.red.shade200,
-    ),
-    Occupation(
-      name: "Pilot",
-      description:
-          "A pilot flies airplanes to take people to different places in the world.",
-      svgAsset: "assets/occupations/pilot.svg",
-      backgroundColor: Colors.white,
-    ),
-    Occupation(
-      name: "Artist",
-      description:
-          "An artist works in a studio and makes beautiful pictures and sculptures.",
-      svgAsset: "assets/occupations/artist.svg",
-      backgroundColor: Colors.grey.shade300,
-    ),
-    Occupation(
-      name: "Author",
-      description:
-          "An author works at home or in an office and writes books and stories for people to read.",
-      svgAsset: "assets/occupations/author.svg",
-      backgroundColor: Colors.grey.shade300,
-    ),
-    Occupation(
-      name: "Photographer",
-      description:
-          "A photographer works in different places and takes pictures of people, places, and things.",
-      svgAsset: "assets/occupations/photographer.svg",
-      backgroundColor: Colors.lightBlue.shade100,
-    ),
-    Occupation(
-      name: "Vet",
-      description:
-          "A veterinarian works in an animal hospital and helps pets and other animals when they are sick.",
-      svgAsset: "assets/occupations/vet.svg",
-      backgroundColor: Colors.cyan.shade200,
-    ),
-    Occupation(
-      name: "Farmer",
-      description:
-          "A farmer works on a farm and grows vegetables and fruits that we eat.",
-      svgAsset: "assets/occupations/farmer.svg",
-      backgroundColor: Colors.yellow.shade700,
-    ),
-    Occupation(
-      name: "Carpenter",
-      description:
-          "A carpenter works in workshops and makes furniture for our houses.",
-      svgAsset: "assets/occupations/carpenter.svg",
-      backgroundColor: Colors.orange.shade100,
-    ),
-    Occupation(
-      name: "Electrician",
-      description:
-          "An electrician works in homes and fixes electrical wires and lights.",
-      svgAsset: "assets/occupations/electrician.svg",
-      backgroundColor: Colors.lightBlue.shade200,
-    ),
-    Occupation(
-      name: "Barber",
-      description: "A barber works in a barbershop and cuts hair.",
-      svgAsset: "assets/occupations/barber.svg",
-      backgroundColor: Colors.lightBlue.shade200,
-    ),
-    Occupation(
-      name: "Dentist",
-      description:
-          "A dentist works in a dental hospital and helps keep our teeth clean and healthy.",
-      svgAsset: "assets/occupations/dentist.svg",
-      backgroundColor: Colors.white,
-    ),
-    Occupation(
-      name: "Lawyer",
-      description:
-          "A lawyer works in an office and helps people understand and follow the law.",
-      svgAsset: "assets/occupations/lawyer.svg",
-      backgroundColor: Colors.brown.shade300,
-    ),
-  ];
-
   /// fruits
 
   static List<Fruit> Fruits = [
@@ -995,10 +724,7 @@ class AppConstants {
   static const String shape = 'Shapes';
   static const String solar = 'Solar System';
   static const String color = 'Colours';
-  static const String flower = 'Flowers';
   static const String fruit = 'Fruits & Vegetables';
-  static const String occupation = 'Occupations';
-  static const String season = 'Seasons Serenade';
   static const String description =
       'Interactive app to let your kids learn various things like\n\n - A - Z alphabets.\n - Animals and their sounds.\n - Birds and their sounds.\n - Various shapes.\n - Body parts.\n - Solar system.\n';
 }

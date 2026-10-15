@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  late Animation<double> _rotationAnimation;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
 
@@ -32,10 +31,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
-    );
-
-    _rotationAnimation = Tween<double>(begin: 0.0, end: 2.0 * 3.14159).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.linear),
     );
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -109,11 +104,11 @@ class _SplashScreenState extends State<SplashScreen>
                             Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.95),
+                                color: Colors.white.withValues(alpha: 0.95),
                                 borderRadius: BorderRadius.circular(30),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.black.withValues(alpha: 0.2),
                                     blurRadius: 30,
                                     spreadRadius: 10,
                                     offset: const Offset(0, 15),
@@ -165,7 +160,7 @@ class _SplashScreenState extends State<SplashScreen>
                                         vertical: 4,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.3),
+                                        color: Colors.white.withValues(alpha: 0.3),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: const Text(
@@ -223,7 +218,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Text(
                   "✨ Made with ❤️",
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withValues(alpha: 0.5),
                     fontSize: 12,
                   ),
                 ),
@@ -252,7 +247,7 @@ class _SplashScreenState extends State<SplashScreen>
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   blurRadius: 10,
                   spreadRadius: 5,
                 ),

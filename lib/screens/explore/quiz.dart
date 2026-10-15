@@ -1,6 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+import 'package:kids_learning_app/core/audio_service.dart';
+import 'package:kids_learning_app/core/progress_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:kids_learning_app/utils/constant/constants.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 
@@ -14,8 +15,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
-  late final FlutterTts _flutterTts;
-
   int _score = 0;
   int selectedIndex = -1;
   bool isTappable = true;
@@ -23,20 +22,15 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
   int _streak = 0;
   int _maxStreak = 0;
   List<int> _wrongAttempts = [];
-  int _attempts = 0;
   bool _showFeedback = false;
 
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
-  late Animation<double> _shakeAnimation;
   Color _bgColor = Colors.white;
 
   @override
   void initState() {
     super.initState();
-    _flutterTts = FlutterTts();
-    _setupTts();
-
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -44,45 +38,31 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
     _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.elasticOut),
     );
-    _shakeAnimation = Tween<double>(begin: 0, end: 0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
-    );
     _animationController.forward();
-  }
-
-  Future<void> _setupTts() async {
-    await _flutterTts.setLanguage("en-US");
-    await _flutterTts.setSpeechRate(0.5);
-    await _flutterTts.setPitch(1.2);
-    await _flutterTts.setVolume(1.0);
   }
 
   @override
   void dispose() {
-    _flutterTts.stop();
+    AppAudio.instance.stop();
     _animationController.dispose();
     super.dispose();
   }
 
   Future<void> _speakQuestion() async {
     final question = AppConstants.ques[questionNumber];
-    await _flutterTts.setSpeechRate(0.5);
-    await _flutterTts.setPitch(1.1);
-    await _flutterTts.speak(question.question);
+    await AppAudio.instance.speak(question.question, pitch: 1.1);
   }
 
   Future<void> _speakFeedback(bool isCorrect, String correctAnswer) async {
     if (isCorrect) {
-      await _flutterTts.setSpeechRate(0.6);
-      await _flutterTts.setPitch(1.3);
-      String feedback = "Correct! ";
-      if (_streak > 3) feedback += "$_streak in a row! 🔥";
-      else feedback += "Great job! 🌟";
-      await _flutterTts.speak(feedback);
+      final feedback = _streak > 3 ? '$_streak in a row! 🔥' : 'Great job! 🌟';
+      await AppAudio.instance.speak('Correct! $feedback', rate: 0.6, pitch: 1.3);
     } else {
-      await _flutterTts.setSpeechRate(0.4);
-      await _flutterTts.setPitch(0.8);
-      await _flutterTts.speak("Oops! The answer is $correctAnswer. Try the next one! 💪");
+      await AppAudio.instance.speak(
+        'Oops! The answer is $correctAnswer. Try the next one! 💪',
+        rate: 0.4,
+        pitch: 0.8,
+      );
     }
   }
 
@@ -91,7 +71,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
     final question = AppConstants.ques[questionNumber];
     final isCorrect = index == question.answer;
-    _attempts++;
 
     setState(() {
       selectedIndex = index;
@@ -130,7 +109,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         questionNumber++;
         selectedIndex = -1;
         isTappable = true;
-        _attempts = 0;
         _bgColor = Colors.white;
         _animationController.reset();
         _animationController.forward();
@@ -148,7 +126,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
       _streak = 0;
       _maxStreak = 0;
       _wrongAttempts = [];
-      _attempts = 0;
       selectedIndex = -1;
       isTappable = true;
       _showFeedback = false;
@@ -160,6 +137,9 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
   }
 
   void _showResultDialog() {
+    context
+        .read<ProgressProvider>()
+        .recordQuiz('quiz', _score, AppConstants.ques.length * 10);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -230,7 +210,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       ),
@@ -249,9 +229,9 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
+                    color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: color.withOpacity(0.3)),
+                    border: Border.all(color: color.withValues(alpha: 0.3)),
                   ),
                   child: Text(
                     message,
@@ -331,7 +311,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
           borderRadius: BorderRadius.circular(30),
         ),
         elevation: 8,
-        shadowColor: color.withOpacity(0.4),
+        shadowColor: color.withValues(alpha: 0.4),
       ),
       child: Text(
         text,
@@ -345,7 +325,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final question = AppConstants.ques[questionNumber];
 
     return Scaffold(
@@ -383,7 +362,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
             margin: const EdgeInsets.only(right: 12),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -464,14 +443,14 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.12),
+                          color: Colors.black.withValues(alpha: 0.12),
                           blurRadius: 15,
                           spreadRadius: 2,
                           offset: const Offset(0, 6),
                         ),
                       ],
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.5),
+                        color: Colors.white.withValues(alpha: 0.5),
                         width: 2,
                       ),
                     ),
@@ -517,7 +496,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                   Expanded(
                     child: ListView.separated(
                       itemCount: 4,
-                      separatorBuilder: (_, __) => const SizedBox(height: 10),
+                      separatorBuilder: (_, _) => const SizedBox(height: 10),
                       itemBuilder: (context, index) {
                         return _optionCard(
                           option: question.options[index],
@@ -547,7 +526,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                         ),
                         elevation: 8,
                         shadowColor: selectedIndex != -1 && !_showFeedback
-                            ? Colors.green.withOpacity(0.4)
+                            ? Colors.green.withValues(alpha: 0.4)
                             : Colors.transparent,
                       ),
                       onPressed: selectedIndex != -1 && !_showFeedback
@@ -626,7 +605,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         border: Border.all(color: borderColor, width: 3),
         boxShadow: [
           BoxShadow(
-            color: borderColor.withOpacity(0.2),
+            color: borderColor.withValues(alpha: 0.2),
             blurRadius: 8,
             spreadRadius: 1,
             offset: const Offset(0, 4),
