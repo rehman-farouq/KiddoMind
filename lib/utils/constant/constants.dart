@@ -675,7 +675,7 @@ class AppConstants {
     ),
     Fruit(
       name: 'Onion',
-      svgAsset: 'assets/fruitsVeges/onion.svg',
+      svgAsset: 'assets/fruitsVeges/onion.png',
       backgroundColor: Colors.white,
       isfruit: false,
     ),
@@ -699,7 +699,7 @@ class AppConstants {
     ),
     Fruit(
       name: 'Strawberry',
-      svgAsset: 'assets/fruitsVeges/strawberry.svg',
+      svgAsset: 'assets/fruitsVeges/strawberry.png',
       backgroundColor: Colors.white,
       isfruit: true,
     ),
