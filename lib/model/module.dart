@@ -4,14 +4,14 @@ class Module {
   final String name;
   final String description;
   final String thumbnailPath;
-  final String route; // Change to String
+  final String route;
   final Color backgroundColor;
 
   Module({
     required this.name,
     required this.description,
     required this.thumbnailPath,
-    required this.route, // Change to String
+    required this.route,
     required this.backgroundColor,
   });
 }

@@ -21,7 +21,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   late Animation<double> _confettiAnimation;
   late Animation<double> _bounceAnimation;
 
-  // Puzzle state
   String _selectedCategory = '';
   bool _isInPuzzle = false;
   int _currentPuzzleIndex = 0;
@@ -37,10 +36,8 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   int _totalStars = 0;
   bool _isLoading = true;
 
-  // Sound effects
   bool _isSoundEnabled = true;
 
-  // Puzzle data
   late List<Map<String, dynamic>> _allPuzzles;
   late Map<String, List<Map<String, dynamic>>> _categoryPuzzles;
 
@@ -118,7 +115,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   void _loadAllPuzzles() {
     _categoryPuzzles = {};
 
-    // 1. Alphabets Puzzle
     final alphabetPuzzles = AppConstants.alphabetItems.map((item) {
       return {
         'question': 'What letter is this?',
@@ -133,7 +129,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Alphabets'] = alphabetPuzzles;
 
-    // 2. Animals Puzzle
     final animalPuzzles = AppConstants.animals.map((animal) {
       return {
         'question': 'What animal is this?',
@@ -148,7 +143,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Animals'] = animalPuzzles;
 
-    // 3. Birds Puzzle
     final birdPuzzles = AppConstants.birds.map((bird) {
       return {
         'question': 'What bird is this?',
@@ -163,7 +157,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Birds'] = birdPuzzles;
 
-    // 4. Colors Puzzle
     final colorPuzzles = [
       {'question': 'What color is this?', 'image': '', 'answer': 'Red', 'hint': '🔴', 'options': ['Red', 'Blue', 'Green', 'Yellow'], 'type': 'color', 'emoji': '🔴', 'bgColor': Colors.red},
       {'question': 'What color is this?', 'image': '', 'answer': 'Blue', 'hint': '🔵', 'options': ['Red', 'Blue', 'Green', 'Yellow'], 'type': 'color', 'emoji': '🔵', 'bgColor': Colors.blue},
@@ -176,7 +169,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     ];
     _categoryPuzzles['Colors'] = colorPuzzles;
 
-    // 5. Fruits Puzzle
     final fruitPuzzles = AppConstants.Fruits.map((fruit) {
       return {
         'question': 'Is this a fruit or vegetable?',
@@ -191,7 +183,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Fruits'] = fruitPuzzles;
 
-    // 6. Planets Puzzle
     final planetPuzzles = AppConstants.planets.map((planet) {
       return {
         'question': 'What planet is this?',
@@ -206,7 +197,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Planets'] = planetPuzzles;
 
-    // 7. Body Parts Puzzle
     final bodyPuzzles = AppConstants.candidates.map((part) {
       return {
         'question': 'What body part is this?',
@@ -221,7 +211,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     }).toList();
     _categoryPuzzles['Body Parts'] = bodyPuzzles;
 
-    // Build category list
     _allPuzzles = [];
     for (int i = 0; i < _categoryNames.length; i++) {
       _allPuzzles.add({
@@ -329,7 +318,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     _say("Let's solve $_selectedCategory puzzles!");
   }
 
-  /// Speaks through the shared TTS unless the child muted the sound.
   void _say(String text) {
     if (_isSoundEnabled) AppAudio.instance.speak(text);
   }
@@ -783,7 +771,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
     final total = puzzles.length;
     final progress = ((_currentPuzzleIndex + 1) / total) * 100;
 
-    // Safe access to puzzle properties
     final puzzleEmoji = puzzle['emoji'] ?? '🧩';
     final puzzleImage = puzzle['image'] ?? '';
     final puzzleHint = puzzle['hint'] ?? '';
@@ -842,7 +829,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                // Progress
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
@@ -922,7 +908,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   ),
                 ),
                 const SizedBox(height: 16),
-                // Question
                 AnimatedBuilder(
                   animation: _mainController,
                   builder: (context, child) {
@@ -953,7 +938,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Emoji or Image
                             if (puzzleEmoji.isNotEmpty && puzzleImage.isEmpty)
                               Container(
                                 padding: const EdgeInsets.all(12),
@@ -1039,7 +1023,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   },
                 ),
                 const SizedBox(height: 16),
-                // Options
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -1126,7 +1109,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
               ],
             ),
           ),
-          // Confetti
           if (_answered && _isCorrect)
             Positioned.fill(
               child: IgnorePointer(

@@ -5,10 +5,6 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Single shared TTS + sound-effect player for the whole app.
-///
-/// Every screen used to create (and configure) its own `FlutterTts` and
-/// `AudioPlayer`. Now there is exactly one of each, configured in one place.
 class AppAudio {
   AppAudio._();
   static final AppAudio instance = AppAudio._();
@@ -24,10 +20,8 @@ class AppAudio {
   double? _rate;
   double? _pitch;
 
-  /// Current TTS language code (e.g. `en-US`, `ur-PK`).
   String get language => _language;
 
-  /// Call once at app start. Safe to call again.
   Future<void> init() async {
     if (_initialized) return;
     _initialized = true;
@@ -41,9 +35,6 @@ class AppAudio {
     }
   }
 
-  /// Change the TTS language for the whole app (persisted).
-  /// Falls back to English if the device has no voice for [code].
-  /// Returns the language that is actually active.
   Future<String> setLanguage(String code) async {
     await _applyLanguage(code);
     try {
@@ -65,7 +56,6 @@ class AppAudio {
     }
   }
 
-  /// Speak [text]. [rate] / [pitch] are only re-applied when they change.
   Future<void> speak(
     String text, {
     double rate = 0.5,
@@ -87,7 +77,6 @@ class AppAudio {
     }
   }
 
-  /// Play a bundled sound asset (animal / bird sounds etc.).
   Future<void> playAsset(String asset) async {
     try {
       await _player.stop();
@@ -98,7 +87,6 @@ class AppAudio {
     }
   }
 
-  /// Stop speech and any playing sound (call from `dispose` of a screen).
   Future<void> stop() async {
     try {
       await _tts.stop();

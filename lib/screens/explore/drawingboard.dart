@@ -142,7 +142,6 @@ class _DrawingBoardState extends State<DrawingBoard>
         ),
         centerTitle: true,
         actions: [
-          // Undo button
           IconButton(
             onPressed: undoStack.isNotEmpty ? _undo : null,
             icon: Icon(
@@ -152,7 +151,6 @@ class _DrawingBoardState extends State<DrawingBoard>
             ),
             tooltip: 'Undo',
           ),
-          // Clear button
           IconButton(
             onPressed: points.isEmpty ? null : _clearCanvas,
             icon: Icon(
@@ -167,7 +165,6 @@ class _DrawingBoardState extends State<DrawingBoard>
       ),
       body: Stack(
         children: [
-          // ================= DRAW AREA =================
           Container(
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -229,7 +226,6 @@ class _DrawingBoardState extends State<DrawingBoard>
             ),
           ),
 
-          // ================= TOP TOOLBAR =================
           Positioned(
             top: 16,
             left: 16,
@@ -249,7 +245,6 @@ class _DrawingBoardState extends State<DrawingBoard>
               ),
               child: Row(
                 children: [
-                  // Pen icon
                   Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
@@ -263,7 +258,6 @@ class _DrawingBoardState extends State<DrawingBoard>
                     ),
                   ),
                   const SizedBox(width: 8),
-                  // Stroke size slider
                   Expanded(
                     child: Row(
                       children: [
@@ -291,7 +285,6 @@ class _DrawingBoardState extends State<DrawingBoard>
                       ],
                     ),
                   ),
-                  // Rainbow mode
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -344,7 +337,6 @@ class _DrawingBoardState extends State<DrawingBoard>
                     ),
                   ),
                   const SizedBox(width: 4),
-                  // Eraser
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -378,7 +370,6 @@ class _DrawingBoardState extends State<DrawingBoard>
             ),
           ),
 
-          // ================= BOTTOM TOOLBAR - Drawing Tools =================
           Positioned(
             bottom: 80,
             left: 0,
@@ -402,7 +393,6 @@ class _DrawingBoardState extends State<DrawingBoard>
                 child: Row(
                   children: [
                     const SizedBox(width: 12),
-                    // Color palette
                     ...colors.map(_colorDot),
                     const SizedBox(width: 12),
                   ],
@@ -427,7 +417,6 @@ class _DrawingBoardState extends State<DrawingBoard>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Current color display
             Row(
               children: [
                 const Text(
@@ -506,7 +495,6 @@ class _DrawingBoardState extends State<DrawingBoard>
                   ),
               ],
             ),
-            // Stats
             Row(
               children: [
                 Container(
@@ -537,7 +525,6 @@ class _DrawingBoardState extends State<DrawingBoard>
     );
   }
 
-  // ================= COLOR BUTTON =================
   Widget _colorDot(Color color) {
     final isSelected = selectedColor == color && !isEraser && !isRainbowMode;
 
@@ -588,7 +575,6 @@ class _DrawingBoardState extends State<DrawingBoard>
   }
 }
 
-/// ================= PAINTER =================
 class _Painter extends CustomPainter {
   final List<DrawingPoint?> points;
 
@@ -611,7 +597,6 @@ class _Painter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
-/// ================= MODEL =================
 class DrawingPoint {
   final Offset offset;
   final Paint paint;

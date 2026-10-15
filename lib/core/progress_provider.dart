@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Stores stars, daily streak, viewed items, best quiz scores and completed
-/// modules. Everything stays on the device (no data leaves the phone).
 class ProgressProvider extends ChangeNotifier {
   static const _kStars = 'progress_stars';
   static const _kStreak = 'progress_streak';
@@ -12,8 +10,6 @@ class ProgressProvider extends ChangeNotifier {
   static const _kBestPrefix = 'progress_best_';
   static const _kViewedPrefix = 'progress_viewed_';
 
-  /// A module counts as completed when every item was viewed, or a quiz was
-  /// finished with at least this percentage.
   static const int completeAtPercent = 70;
 
   int _stars = 0;
@@ -38,8 +34,6 @@ class ProgressProvider extends ChangeNotifier {
   bool isCompleted(String moduleId) => _completed.contains(moduleId);
   int bestPercent(String moduleId) => _bestPercent[moduleId] ?? 0;
   int viewedCount(String moduleId) => _viewed[moduleId]?.length ?? 0;
-
-  // ---------------------------------------------------------------- load/save
 
   Future<void> _load() async {
     try {
@@ -71,7 +65,6 @@ class ProgressProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Updates the daily streak. Called once per app start.
   Future<void> _registerOpen(SharedPreferences prefs) async {
     final now = DateTime.now();
     final today = _dayKey(now);
@@ -107,9 +100,6 @@ class ProgressProvider extends ChangeNotifier {
     return today.difference(last).inDays;
   }
 
-  // ----------------------------------------------------------------- learning
-
-  /// Remember that the child saw item [index] of [total] in [moduleId].
   Future<void> markViewed(String moduleId, int index, int total) async {
     final set = _viewed.putIfAbsent(moduleId, () => <int>{});
     if (!set.add(index)) return;
@@ -125,9 +115,6 @@ class ProgressProvider extends ChangeNotifier {
     }
   }
 
-  // --------------------------------------------------------------------- quiz
-
-  /// Saves a finished quiz and returns the number of stars earned (0-3).
   Future<int> recordQuiz(String moduleId, int score, int maxScore) async {
     if (maxScore <= 0) return 0;
     final percent = ((score / maxScore) * 100).round().clamp(0, 100);

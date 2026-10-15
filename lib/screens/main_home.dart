@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kids_learning_app/screens/home.dart';
 
-/// Home wrapper: press back twice to exit.
 class MainHome extends StatefulWidget {
   const MainHome({super.key});
 

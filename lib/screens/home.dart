@@ -6,7 +6,6 @@ import 'package:kids_learning_app/utils/constant/const_dimensions.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 import '../widgets/drawer.dart';
 
-// ========== HELPER CLASS FOR CLEAN CATEGORY DATA ==========
 class CategoryItem {
   final String title;
   final String image;
@@ -25,7 +24,6 @@ class CategoryItem {
   });
 }
 
-/// Progress id of each learning module, by route.
 const Map<String, String> _moduleIdByRoute = {
   AllRoutesConstant.atozRoute: 'atoz',
   AllRoutesConstant.animalRoute: 'animals',
@@ -46,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>
-    with TickerProviderStateMixin {  // ← Changed from SingleTickerProviderStateMixin
+    with TickerProviderStateMixin {
   late List<bool> _isImageClicked;
   late List<CategoryItem> _shuffledCategories;
   late AnimationController _animationController;
@@ -56,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage>
   late Animation<double> _scaleAnimation;
   late Animation<double> _floatAnimation;
 
-  // 📚 Base categories
   final List<CategoryItem> _baseCategories = [
     CategoryItem(
       title: "Alphabets",
@@ -66,14 +63,6 @@ class _MyHomePageState extends State<MyHomePage>
       route: AllRoutesConstant.atozRoute,
       color: const Color(0xFFFF6B6B),
     ),
-    // CategoryItem(
-    //   title: "Urdu Letters",
-    //   emoji: "📜",
-    //   image: "assets/images/urdu.png",
-    //   shortDesc: "Learn Urdu alphabet!",
-    //   route: AllRoutesConstant.urduRoute,
-    //   color: const Color(0xFF4CAF50),
-    // ),
     CategoryItem(
       title: "Animals",
       emoji: "🐘",
@@ -262,7 +251,6 @@ class _MyHomePageState extends State<MyHomePage>
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              // Welcome message with float animation
               AnimatedBuilder(
                 animation: _floatAnimation,
                 builder: (context, child) {
@@ -273,7 +261,6 @@ class _MyHomePageState extends State<MyHomePage>
                 },
               ),
               const SizedBox(height: 16),
-              // Categories grid
               AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
@@ -421,7 +408,6 @@ class _MyHomePageState extends State<MyHomePage>
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Image with Hero animation
               Hero(
                 tag: 'category_${category.title}',
                 child: Image.asset(
@@ -440,7 +426,6 @@ class _MyHomePageState extends State<MyHomePage>
                   },
                 ),
               ),
-              // Gradient overlay
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -471,14 +456,12 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                   ),
                 ),
-              // Content
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Emoji with animation
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       transform: Matrix4.diagonal3Values(
@@ -501,7 +484,6 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     const SizedBox(height: 4),
-                    // Title
                     Text(
                       category.title,
                       style: const TextStyle(
@@ -517,7 +499,6 @@ class _MyHomePageState extends State<MyHomePage>
                         ],
                       ),
                     ),
-                    // Description
                     Text(
                       category.shortDesc,
                       style: TextStyle(
@@ -533,7 +514,6 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                     ),
                     const SizedBox(height: 6),
-                    // Explore indicator
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,

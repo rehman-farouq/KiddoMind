@@ -7,7 +7,6 @@ import 'package:kids_learning_app/widgets/learn/learn_models.dart';
 import 'package:kids_learning_app/widgets/learn/module_widgets.dart';
 import 'package:provider/provider.dart';
 
-/// Generic "learn" screen: one big card, name, optional sound, previous/next.
 class LearnView extends StatefulWidget {
   final ModuleConfig config;
   final List<LearnItem> items;
@@ -250,8 +249,6 @@ class _LearnViewState extends State<LearnView>
   }
 }
 
-/// The big rounded card (picture or colour + emoji/number).
-/// Also used as the question card in quiz mode.
 class ItemCard extends StatelessWidget {
   final LearnItem item;
   final ModuleConfig config;

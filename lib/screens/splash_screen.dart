@@ -85,14 +85,11 @@ class _SplashScreenState extends State<SplashScreen>
         ),
         child: Stack(
           children: [
-            // Decorative floating elements
             _buildFloatingElements(),
-            // Main content
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Animated Logo
                   AnimatedBuilder(
                     animation: _controller,
                     builder: (context, child) {
@@ -100,7 +97,6 @@ class _SplashScreenState extends State<SplashScreen>
                         scale: _scaleAnimation.value,
                         child: Column(
                           children: [
-                            // Logo container with shadow
                             Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
@@ -130,7 +126,6 @@ class _SplashScreenState extends State<SplashScreen>
                               ),
                             ),
                             const SizedBox(height: 30),
-                            // App Name with slide animation
                             SlideTransition(
                               position: _slideAnimation,
                               child: FadeTransition(
@@ -178,7 +173,6 @@ class _SplashScreenState extends State<SplashScreen>
                               ),
                             ),
                             const SizedBox(height: 40),
-                            // Animated Loader
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -209,7 +203,6 @@ class _SplashScreenState extends State<SplashScreen>
                 ],
               ),
             ),
-            // Bottom decoration
             Positioned(
               bottom: 30,
               left: 0,

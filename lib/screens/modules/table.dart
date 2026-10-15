@@ -32,7 +32,6 @@ const _tableColors = [
   Colors.teal,
 ];
 
-/// Multiplication tables: custom learn screen, shared page and quiz engine.
 class TablePage extends StatelessWidget {
   const TablePage({super.key});
 

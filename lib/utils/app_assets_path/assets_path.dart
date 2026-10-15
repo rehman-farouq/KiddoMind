@@ -1,5 +1,4 @@
 class AssetsPath {
-  //Image assets
   static const String _images = 'assets/images/';
   static const String _alphabetImages = 'assets/images/alphabet/';
   static const String _animalImages = 'assets/images/animal/';
@@ -8,12 +7,9 @@ class AssetsPath {
   static const String _solarImages = 'assets/images/solar/';
   static const String _coloursImages = 'assets/colours/';
 
-  //Sound assets
   static const String _sounds = 'assets/sounds/';
   static const String _animalSound = 'assets/sounds/animals/';
   static const String _birdSound = 'assets/sounds/birds/';
-
-  //Image assets
 
   static String getImage(String name) {
     return _images + name;
@@ -42,8 +38,6 @@ class AssetsPath {
   static String getColoursImage(String name) {
     return _coloursImages + name;
   }
-
-  //Sound assets
 
   static String getSound(String name) {
     return _sounds + name;
@@ -113,7 +107,6 @@ class Animals {
   static const String tiger = 'tiger.jpg';
   static const String zebra = 'zebra.jpg';
 
-  //sound
   static const String bearSound = 'bear_sound.mp3';
   static const String catSound = 'cat_sound.wav';
   static const String cowSound = 'cow_sound.mp3';
@@ -160,8 +153,6 @@ class Birds {
   static const String swan = 'swan.jpg';
   static const String vulture = 'vulture.jpg';
   static const String woodpecker = 'woodpecker.jpg';
-
-  //sound
 
   static const String bagulaSound = 'Bagula.mp3';
   static const String bayaSound = 'Baya.mp3';

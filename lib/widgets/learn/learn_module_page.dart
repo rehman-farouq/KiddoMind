@@ -4,11 +4,6 @@ import 'package:kids_learning_app/widgets/learn/learn_models.dart';
 import 'package:kids_learning_app/widgets/learn/learn_view.dart';
 import 'package:kids_learning_app/widgets/learn/quiz_view.dart';
 
-/// One page for every learning module: app bar + Learn/Quiz switch.
-///
-/// A module is just data: pass a [ModuleConfig] and a list of [LearnItem]s.
-/// Modules with special needs (multiplication tables) can pass their own
-/// [learnBuilder] and/or [questionBuilder].
 class LearnModulePage extends StatefulWidget {
   final ModuleConfig config;
   final List<LearnItem> items;

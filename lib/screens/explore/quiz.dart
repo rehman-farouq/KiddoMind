@@ -89,7 +89,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
       isTappable = false;
     });
 
-    // Speak feedback
     _speakFeedback(isCorrect, question.options[question.answer]);
 
     Future.delayed(const Duration(seconds: 1), () {
@@ -395,7 +394,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  // Streak indicator
                   if (_streak > 0)
                     Container(
                       margin: const EdgeInsets.only(bottom: 12),
@@ -430,7 +428,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                       ),
                     ),
 
-                  // Question card
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
@@ -492,7 +489,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
                   const SizedBox(height: 16),
 
-                  // Options
                   Expanded(
                     child: ListView.separated(
                       itemCount: 4,
@@ -509,7 +505,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
                   const SizedBox(height: 12),
 
-                  // Next button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -561,7 +556,6 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
     );
   }
 
-  // ================= OPTION CARD =================
   Widget _optionCard({
     required String option,
     required int index,

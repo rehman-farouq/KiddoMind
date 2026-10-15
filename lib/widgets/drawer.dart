@@ -14,7 +14,6 @@ class MyDrawer extends StatelessWidget {
         ),
         child: Column(
           children: [
-            /// HEADER
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -52,7 +51,6 @@ class MyDrawer extends StatelessWidget {
 
             const SizedBox(height: 8),
 
-            /// MENU - All Categories
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -79,16 +77,6 @@ class MyDrawer extends StatelessWidget {
                       Navigator.pushNamed(context, AllRoutesConstant.atozRoute);
                     },
                   ),
-                  // _buildTile(
-                  //   context,
-                  //   icon: Icons.text_fields,
-                  //   title: "Urdu Letters",
-                  //   color: const Color(0xFF4CAF50),
-                  //   onTap: () {
-                  //     Navigator.pop(context);
-                  //     Navigator.pushNamed(context, AllRoutesConstant.urduRoute);
-                  //   },
-                  // ),
                   _buildTile(
                     context,
                     icon: Icons.pets,
@@ -202,7 +190,6 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
 
-            /// Footer
             Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
@@ -250,7 +237,6 @@ class MyDrawer extends StatelessWidget {
           ),
           child: Row(
             children: [
-              /// ICON
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(12)),
@@ -258,7 +244,6 @@ class MyDrawer extends StatelessWidget {
               ),
               const SizedBox(width: 12),
 
-              /// TITLE
               Expanded(
                 child: Text(
                   title,
@@ -266,7 +251,6 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
 
-              /// ARROW
               Icon(Icons.arrow_forward_ios_rounded, size: 12, color: Colors.grey.shade400),
             ],
           ),

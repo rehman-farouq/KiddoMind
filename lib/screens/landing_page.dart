@@ -85,16 +85,13 @@ class _LandingPageState extends State<LandingPage>
         ),
         child: Stack(
           children: [
-            // Decorative floating elements
             _buildFloatingElements(),
-            // Main content
             SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 child: Column(
                   children: [
-                    /// Animated Lottie Animation
                     AnimatedBuilder(
                       animation: _bounceAnimation,
                       builder: (context, child) {
@@ -128,7 +125,6 @@ class _LandingPageState extends State<LandingPage>
 
                     const SizedBox(height: 20),
 
-                    /// Animated Title with colorful text
                     SlideTransition(
                       position: _slideAnimation,
                       child: FadeTransition(
@@ -171,7 +167,6 @@ class _LandingPageState extends State<LandingPage>
 
                     const SizedBox(height: 10),
 
-                    /// Subtitle with emojis
                     FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
@@ -215,7 +210,6 @@ class _LandingPageState extends State<LandingPage>
 
                     const SizedBox(height: 30),
 
-                    /// Features row
                     FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
@@ -241,7 +235,6 @@ class _LandingPageState extends State<LandingPage>
 
                     const SizedBox(height: 30),
 
-                    /// Start Button with animation
                     AnimatedBuilder(
                       animation: _bounceAnimation,
                       builder: (context, child) {
@@ -319,7 +312,6 @@ class _LandingPageState extends State<LandingPage>
 
                     const SizedBox(height: 20),
 
-                    /// Small friendly footer text
                     FadeTransition(
                       opacity: _fadeAnimation,
                       child: Column(

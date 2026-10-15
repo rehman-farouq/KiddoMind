@@ -103,22 +103,16 @@ class _AboutPageState extends State<AboutPage>
                   child: Column(
                     children: [
                       const SizedBox(height: 10),
-                      // ================= HEADER WITH ANIMATION =================
                       _buildHeader(),
                       const SizedBox(height: 20),
-                      // ================= APP INFO CARDS =================
                       _buildAppInfoCard(),
                       const SizedBox(height: 16),
-                      // ================= PURPOSE =================
                       _buildPurposeCard(),
                       const SizedBox(height: 16),
-                      // ================= FEATURES =================
                       _buildFeaturesSection(),
                       const SizedBox(height: 20),
-                      // ================= FOOTER =================
                       _buildFooter(),
                       const SizedBox(height: 16),
-                      // ================= DECORATIVE ELEMENTS =================
                       _buildDecorativeFooter(),
                     ],
                   ),

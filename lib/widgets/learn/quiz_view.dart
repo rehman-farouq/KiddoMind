@@ -9,8 +9,6 @@ import 'package:kids_learning_app/widgets/learn/learn_view.dart';
 import 'package:kids_learning_app/widgets/learn/module_widgets.dart';
 import 'package:provider/provider.dart';
 
-/// Generic quiz: shows a picture/headline and 2-4 answer buttons.
-/// Scoring: 10 points first try, 5 second try, 2 third try.
 class QuizView extends StatefulWidget {
   final ModuleConfig config;
   final QuizBuilder buildQuestions;
@@ -163,8 +161,6 @@ class _QuizViewState extends State<QuizView>
     if (_questions.isEmpty) return const SizedBox.shrink();
     return _finished ? _result() : _question();
   }
-
-  // ----------------------------------------------------------------- question
 
   Widget _question() {
     final q = _q;
@@ -442,8 +438,6 @@ class _QuizViewState extends State<QuizView>
       }),
     );
   }
-
-  // ------------------------------------------------------------------- result
 
   Widget _result() {
     final percent = _maxScore == 0 ? 0 : (_score * 100 / _maxScore).round();

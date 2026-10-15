@@ -2,39 +2,27 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-/// One thing the child can learn (an animal, a letter, a colour, a number...).
 class LearnItem {
-  /// Name shown on screen and (by default) read aloud.
   final String name;
 
-  /// Main colour of the card.
   final Color color;
 
-  /// What TTS says in learn mode. Defaults to [name].
   final String? speakText;
 
-  /// Text of the correct quiz option. Defaults to [name].
   final String? answerLabel;
 
-  /// Picture (`.jpg`, `.png` or `.svg` asset).
   final String? imageAsset;
 
-  /// Optional sound effect (animal / bird sound).
   final String? soundAsset;
 
-  /// Emoji shown next to the name (or inside the card when there is no image).
   final String? emoji;
 
-  /// Large text shown inside the card when there is no image (number, letter).
   final String? bigText;
 
-  /// Short explanation shown under the name.
   final String? description;
 
-  /// Paint the whole card with [color] (used for the Colours module).
   final bool solid;
 
-  /// Overrides of the quiz question for this item (optional).
   final String? quizPrompt;
   final String? quizSpeak;
 
@@ -57,18 +45,14 @@ class LearnItem {
   String get answer => answerLabel ?? name;
 }
 
-/// Look, texts and behaviour of one module screen.
 class ModuleConfig {
-  /// Stable id used to save progress (e.g. `animals`).
   final String id;
 
-  /// App bar title, e.g. `🐶 Animals!`.
   final String title;
 
   final String learnIntro;
   final String quizIntro;
 
-  /// Default quiz question (shown and spoken).
   final String quizPrompt;
 
   final String tapHint;
@@ -81,10 +65,8 @@ class ModuleConfig {
   final Color backgroundColor;
   final List<Color>? backgroundGradient;
 
-  /// Dark background (space theme) -> light hint text.
   final bool dark;
 
-  /// Gradient of the round buttons and progress bar.
   final List<Color> accent;
 
   final int quizLength;
@@ -112,7 +94,6 @@ class ModuleConfig {
 
   Color get hintColor => dark ? Colors.white70 : Colors.grey.shade600;
 
-  /// Quiz cards use the "?" decoration instead of the learn decoration.
   ModuleConfig copyForQuiz() => ModuleConfig(
         id: id,
         title: title,
@@ -134,12 +115,9 @@ class ModuleConfig {
       );
 }
 
-/// One quiz question.
 class QuizQuestion {
-  /// Shows the picture / card of this item (hidden label).
   final LearnItem? item;
 
-  /// Big text instead of a picture (e.g. `7 × 8 = ?`).
   final String? headline;
 
   final Color color;
@@ -161,7 +139,6 @@ class QuizQuestion {
 
 typedef QuizBuilder = List<QuizQuestion> Function(Random random);
 
-/// Default "which one is this?" quiz built from the learn items.
 List<QuizQuestion> buildItemQuiz(
   List<LearnItem> items,
   ModuleConfig config,
@@ -171,7 +148,6 @@ List<QuizQuestion> buildItemQuiz(
   final pool = items.map((i) => i.answer).toSet().toList();
   final optionCount = min(4, pool.length);
 
-  // Shuffle so questions do not repeat inside one quiz.
   final order = <LearnItem>[];
   while (order.length < config.quizLength) {
     order.addAll(List<LearnItem>.from(items)..shuffle(random));

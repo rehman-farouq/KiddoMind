@@ -26,7 +26,6 @@ class FruitsPage extends StatelessWidget {
         imageAsset: f.svgAsset,
         description: f.isfruit ? '🍎 This is a fruit' : '🥕 This is a vegetable',
         speakText: '${f.name}. It is a ${kind.toLowerCase()}.',
-        // The quiz asks "fruit or vegetable?", so the options are the kinds.
         answerLabel: kind,
       );
     }).toList();

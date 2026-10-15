@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/// Text colour that stays readable on top of [background].
 Color readableOn(Color background) =>
     background.computeLuminance() > 0.6 ? Colors.black87 : Colors.white;
 
-/// Name colour that never disappears on a white card.
 Color nameColor(Color c) =>
     c.computeLuminance() > 0.8 ? Colors.grey.shade800 : c;
 
-/// Shows a `.svg` with flutter_svg and any other image with `Image.asset`.
 class AssetVisual extends StatelessWidget {
   final String asset;
   final double? height;
@@ -37,7 +34,6 @@ class AssetVisual extends StatelessWidget {
   }
 }
 
-/// Segmented progress bar used on top of every learn screen.
 class SegmentProgressBar extends StatelessWidget {
   final int total;
   final int current;
@@ -82,7 +78,6 @@ class SegmentProgressBar extends StatelessWidget {
   }
 }
 
-/// Round gradient button (previous / speak / next / play sound).
 class RoundActionButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
@@ -132,7 +127,6 @@ class RoundActionButton extends StatelessWidget {
   }
 }
 
-/// Small pill used in the quiz header ("Q3/10", "20 pts").
 class ScoreChip extends StatelessWidget {
   final String emoji;
   final String label;

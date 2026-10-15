@@ -11,7 +11,6 @@ import '../../model/module.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
 
 class AppConstants {
-  ///   plantes
   static List<Planet> planets = [
     Planet(
       name: 'Sun',
@@ -69,47 +68,44 @@ class AppConstants {
     ),
   ];
 
-  ///  modules
   static List<Module> modules = [
     Module(
       name: 'A-Z',
       description: 'Learn A to Z with production and an example',
       thumbnailPath: AssetsPath.getAlphabetImage(Alphabets.alphabets),
-      route: AllRoutesConstant.atozRoute, // Use route name
+      route: AllRoutesConstant.atozRoute,
       backgroundColor: const Color.fromARGB(193, 76, 175, 79),
     ),
     Module(
       name: 'Birds',
       description: 'Look out for Birds with their sounds',
       thumbnailPath: AssetsPath.getBirdImage(Birds.birds),
-      route: AllRoutesConstant.birdsRoute, // Use route name
+      route: AllRoutesConstant.birdsRoute,
       backgroundColor: const Color.fromARGB(193, 76, 207, 222),
     ),
     Module(
       name: "Animal",
       description: "Explore and Learn about the Animals",
       thumbnailPath: AssetsPath.getAnimalImage(Animals.animals),
-      route: AllRoutesConstant.animalRoute, // Use route name
+      route: AllRoutesConstant.animalRoute,
       backgroundColor: const Color.fromARGB(193, 21, 234, 28),
     ),
     Module(
       name: "Body Parts",
       description: "Explore and Learn about the Body Parts",
       thumbnailPath: AssetsPath.getBodyImage(Body.body),
-      route: AllRoutesConstant.partsRoute, // Use route name
+      route: AllRoutesConstant.partsRoute,
       backgroundColor: const Color.fromARGB(193, 76, 207, 222),
     ),
     Module(
       name: 'Quiz',
       description: 'Fun Quizzes for Curious Kids!',
       thumbnailPath: "./assets/images/quiz.jpg",
-      route: AllRoutesConstant.quizRoute, // Use route name
+      route: AllRoutesConstant.quizRoute,
       backgroundColor: const Color.fromARGB(193, 76, 175, 79),
     ),
-    // Add other modules
   ];
 
-  /// body parts
   static const List<String> candidates = [
     "Eye",
     "Lips",
@@ -143,64 +139,61 @@ class AppConstants {
     "Wrist",
   ];
 
-  ///  questions
   static List<Questions> ques = [
     Questions(
       question: "How many Orange Cars are there?",
       options: ["5", "6", "1", "2"],
       image: "assets/quiz/q1.jpg",
-      answer: 3, // Index of the correct option, in this case, "Paris"
+      answer: 3,
     ),
     Questions(
       question: "Count the Pokemons.",
       image: "assets/quiz/q2.jpg",
 
       options: ["11", "9", "10", "8"],
-      answer: 2, // Index of the correct option, in this case, "Au"
+      answer: 2,
     ),
     Questions(
       question: "1,2,_,4,5",
       options: ["5", "3", "6", "4"],
-      answer: 1, // Index of the correct option, in this case, "105"
+      answer: 1,
     ),
     Questions(
       question: "10,20_,40,50",
       options: ["60", "20", "30", "70"],
-      answer: 2, // Index of the correct option, in this case, "Dart"
+      answer: 2,
     ),
     Questions(
       question: "Count Yellow Bears.",
       image: "assets/quiz/q5.jpg",
       options: ["2", "3", "4", "5"],
-      answer: 1, // Index of the correct option, in this case, "1492"
+      answer: 1,
     ),
     Questions(
       question: "Count the Number of Balls",
       image: "assets/quiz/q6.jpg",
       options: ["5", "6", "4", "7"],
-      answer: 0, // Index of the correct option, in this case, "1492"
+      answer: 0,
     ),
     Questions(
       question: "Count Hearts",
       image: "assets/quiz/q7.jpg",
       options: ["10", "6", "9", "7"],
-      answer: 3, // Index of the correct option, in this case, "1492"
+      answer: 3,
     ),
     Questions(
       question: "Count Buckets",
       image: "assets/quiz/q9.jpg",
       options: ["1", "2", "3", "4"],
-      answer: 0, // Index of the correct option, in this case, "1492"
+      answer: 0,
     ),
     Questions(
       question: "Count the pencils",
       image: "assets/quiz/q10.jpg",
       options: ["10", "12", "13", "11"],
-      answer: 2, // Index of the correct option, in this case, "1492"
+      answer: 2,
     ),
   ];
-
-  ///  alphabets
 
   static List<ItemData> alphabetItems = [
     ItemData(
@@ -361,8 +354,6 @@ class AppConstants {
     ),
   ];
 
-  /// animails
-
   static List<Animal> animals = [
     Animal(
       name: 'Cat',
@@ -486,7 +477,6 @@ class AppConstants {
     ),
   ];
 
-  ///  birds
   static List<Bird> birds = [
     Bird(
       name: 'Sparrow',
@@ -615,8 +605,6 @@ class AppConstants {
       backgroundColor: const Color.fromARGB(156, 248, 248, 248),
     ),
   ];
-
-  /// fruits
 
   static List<Fruit> Fruits = [
     Fruit(

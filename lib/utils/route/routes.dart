@@ -39,7 +39,6 @@ class Routers {
       case AllRoutesConstant.drawingboardRoute:
         return slidePageRoute(const DrawingBoardPage());
 
-      // Learning modules
       case AllRoutesConstant.atozRoute:
         return slidePageRoute(const AtoZ());
       case AllRoutesConstant.animalRoute:
