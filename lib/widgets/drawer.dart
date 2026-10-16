@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -16,31 +17,31 @@ class MyDrawer extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              decoration: const BoxDecoration(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+              decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30.r), bottomRight: Radius.circular(30.r)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(15)),
-                        child: const Text("🧸", style: TextStyle(fontSize: 30)),
+                        padding: EdgeInsets.all(8.w),
+                        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(15.r)),
+                        child: Text("🧸", style: TextStyle(fontSize: 30.sp)),
                       ),
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "KiddoMind",
-                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                            style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
-                          Text("Learn & Play", style: TextStyle(fontSize: 13, color: Colors.white70)),
+                          Text("Learn & Play", style: TextStyle(fontSize: 13.sp, color: Colors.white70)),
                         ],
                       ),
                     ],
@@ -49,11 +50,11 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
 
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                 physics: const BouncingScrollPhysics(),
                 children: [
                   _buildCategorySection("📚 Learning"),
@@ -138,7 +139,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   _buildCategorySection("🧮 Math"),
                   _buildTile(
                     context,
@@ -161,7 +162,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   _buildCategorySection("🎨 Creativity"),
                   _buildTile(
                     context,
@@ -174,7 +175,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
 
-                  const Divider(height: 24, thickness: 1, color: Colors.grey),
+                  Divider(height: 24.h, thickness: 1, color: Colors.grey),
 
                   _buildTile(
                     context,
@@ -191,18 +192,18 @@ class MyDrawer extends StatelessWidget {
             ),
 
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 12),
+              padding: EdgeInsets.symmetric(vertical: 12.h),
               decoration: BoxDecoration(
-                border: Border(top: BorderSide(color: Colors.grey.shade200, width: 1)),
+                border: Border(top: BorderSide(color: Colors.grey.shade200, width: 1.w)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("✨ Made with", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  const SizedBox(width: 4),
-                  const Text("❤️", style: TextStyle(fontSize: 12, color: Colors.red)),
-                  const SizedBox(width: 4),
-                  Text("for Kids", style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                  Text("✨ Made with", style: TextStyle(fontSize: 12.sp, color: Colors.grey)),
+                  SizedBox(width: 4.w),
+                  Text("❤️", style: TextStyle(fontSize: 12.sp, color: Colors.red)),
+                  SizedBox(width: 4.w),
+                  Text("for Kids", style: TextStyle(fontSize: 12.sp, color: Colors.grey.shade600)),
                 ],
               ),
             ),
@@ -214,44 +215,44 @@ class MyDrawer extends StatelessWidget {
 
   Widget _buildCategorySection(String title) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8, top: 8, bottom: 6),
+      padding: EdgeInsets.only(left: 8.w, top: 8.h, bottom: 6.h),
       child: Text(
         title,
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey.shade600, letterSpacing: 1),
+        style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold, color: Colors.grey.shade600, letterSpacing: 1),
       ),
     );
   }
 
   Widget _buildTile(BuildContext context, {required IconData icon, required String title, required Color color, required VoidCallback onTap}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: EdgeInsets.symmetric(vertical: 3.h),
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6, offset: const Offset(0, 2))],
+            borderRadius: BorderRadius.circular(16.r),
+            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6.r, offset: const Offset(0, 2))],
           ),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(12)),
-                child: Icon(icon, color: color, size: 22),
+                padding: EdgeInsets.all(8.w),
+                decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(12.r)),
+                child: Icon(icon, color: color, size: 22.sp),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
 
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87),
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: Colors.black87),
                 ),
               ),
 
-              Icon(Icons.arrow_forward_ios_rounded, size: 12, color: Colors.grey.shade400),
+              Icon(Icons.arrow_forward_ios_rounded, size: 12.sp, color: Colors.grey.shade400),
             ],
           ),
         ),

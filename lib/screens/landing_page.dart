@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 import 'package:lottie/lottie.dart';
@@ -89,7 +90,7 @@ class _LandingPageState extends State<LandingPage>
             SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
                 child: Column(
                   children: [
                     AnimatedBuilder(
@@ -101,18 +102,18 @@ class _LandingPageState extends State<LandingPage>
                             height: height * 0.4,
                             width: width,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(30.r),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.pink.withValues(alpha: 0.2),
-                                  blurRadius: 30,
-                                  spreadRadius: 10,
+                                  blurRadius: 30.r,
+                                  spreadRadius: 10.r,
                                   offset: const Offset(0, 10),
                                 ),
                               ],
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(30.r),
                               child: Lottie.asset(
                                 "assets/lottie/for_kids.json",
                                 fit: BoxFit.contain,
@@ -123,7 +124,7 @@ class _LandingPageState extends State<LandingPage>
                       },
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     SlideTransition(
                       position: _slideAnimation,
@@ -144,7 +145,7 @@ class _LandingPageState extends State<LandingPage>
                                   fontWeight: FontWeight.w900,
                                   shadows: [
                                     Shadow(
-                                      blurRadius: 10,
+                                      blurRadius: 10.r,
                                       color: Colors.black12,
                                       offset: Offset(0, 3),
                                     ),
@@ -165,31 +166,31 @@ class _LandingPageState extends State<LandingPage>
                       ),
                     ),
 
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
 
                     FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 8,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.w,
+                          vertical: 8.h,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.7),
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                           border: Border.all(
                             color: Colors.pink.withValues(alpha: 0.3),
-                            width: 2,
+                            width: 2.w,
                           ),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Text(
+                            Text(
                               "🎨",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 24.sp),
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: 8.w),
                             Text(
                               "Fun Learning for Kids",
                               style: TextStyle(
@@ -198,28 +199,28 @@ class _LandingPageState extends State<LandingPage>
                                 color: Colors.black87,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            const Text(
+                            SizedBox(width: 8.w),
+                            Text(
                               "📚",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 24.sp),
                             ),
                           ],
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
 
                     FadeTransition(
                       opacity: _fadeAnimation,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 12.h,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.5),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -233,7 +234,7 @@ class _LandingPageState extends State<LandingPage>
                       ),
                     ),
 
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
 
                     AnimatedBuilder(
                       animation: _bounceAnimation,
@@ -250,10 +251,10 @@ class _LandingPageState extends State<LandingPage>
                                 elevation: 10,
                                 shadowColor: Colors.pinkAccent.withValues(alpha: 0.4),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(30.r),
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w,
                                 ),
                               ),
                               onPressed: () async {
@@ -281,25 +282,25 @@ class _LandingPageState extends State<LandingPage>
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "Start Learning",
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       fontWeight: FontWeight.bold,
                                       letterSpacing: 1,
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
+                                  SizedBox(width: 10.w),
                                   Container(
-                                    padding: const EdgeInsets.all(6),
+                                    padding: EdgeInsets.all(6.w),
                                     decoration: BoxDecoration(
                                       color: Colors.white.withValues(alpha: 0.3),
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20.r),
                                     ),
-                                    child: const Icon(
+                                    child: Icon(
                                       Icons.arrow_forward_rounded,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: 20.sp,
                                     ),
                                   ),
                                 ],
@@ -310,7 +311,7 @@ class _LandingPageState extends State<LandingPage>
                       },
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
 
                     FadeTransition(
                       opacity: _fadeAnimation,
@@ -318,34 +319,34 @@ class _LandingPageState extends State<LandingPage>
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 "⭐",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16.sp),
                               ),
-                              SizedBox(width: 4),
+                              SizedBox(width: 4.w),
                               Text(
                                 "⭐",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16.sp),
                               ),
-                              SizedBox(width: 4),
+                              SizedBox(width: 4.w),
                               Text(
                                 "⭐",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16.sp),
                               ),
-                              SizedBox(width: 4),
+                              SizedBox(width: 4.w),
                               Text(
                                 "⭐",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16.sp),
                               ),
-                              SizedBox(width: 4),
+                              SizedBox(width: 4.w),
                               Text(
                                 "⭐",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(fontSize: 16.sp),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8.h),
                           Text(
                             "Made for curious little minds ❤️",
                             style: TextStyle(
@@ -358,7 +359,7 @@ class _LandingPageState extends State<LandingPage>
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                   ],
                 ),
               ),
@@ -373,28 +374,28 @@ class _LandingPageState extends State<LandingPage>
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(8.w),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 5,
+                blurRadius: 5.r,
                 offset: const Offset(0, 2),
               ),
             ],
           ),
           child: Text(
             emoji,
-            style: const TextStyle(fontSize: 24),
+            style: TextStyle(fontSize: 24.sp),
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4.h),
         Text(
           label,
           style: TextStyle(
-            fontSize: 10,
+            fontSize: 10.sp,
             color: Colors.grey.shade700,
             fontWeight: FontWeight.w600,
           ),
@@ -432,7 +433,7 @@ class _LandingPageState extends State<LandingPage>
                   opacity: opacity,
                   child: Text(
                     element["emoji"] as String,
-                    style: const TextStyle(fontSize: 28),
+                    style: TextStyle(fontSize: 28.sp),
                   ),
                 ),
               );

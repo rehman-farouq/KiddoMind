@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
@@ -195,36 +196,36 @@ class _MyHomePageState extends State<MyHomePage>
         elevation: 0,
         title: Row(
           children: [
-            const Text(
+            Text(
               '🧸 Kids Zone',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 22,
+                fontSize: 22.sp,
                 shadows: [
                   Shadow(
-                    blurRadius: 10,
+                    blurRadius: 10.r,
                     color: Colors.black26,
                     offset: Offset(0, 2),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Consumer<ProgressProvider>(
               builder: (context, progress, _) => Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Text(
                   '🔥 ${progress.streak}   ⭐ ${progress.stars}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -248,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage>
         ),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(12.w),
           child: Column(
             children: [
               AnimatedBuilder(
@@ -260,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage>
                   );
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
@@ -275,8 +276,8 @@ class _MyHomePageState extends State<MyHomePage>
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: isTablet ? 3 : 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
+                            crossAxisSpacing: 12.w,
+                            mainAxisSpacing: 12.h,
                             childAspectRatio: 0.9,
                           ),
                           itemCount: _shuffledCategories.length,
@@ -295,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage>
                   );
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
             ],
           ),
         ),
@@ -305,19 +306,19 @@ class _MyHomePageState extends State<MyHomePage>
 
   Widget _buildWelcomeMessage() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
             color: Colors.orange.withValues(alpha: 0.3),
-            blurRadius: 20,
-            spreadRadius: 5,
+            blurRadius: 20.r,
+            spreadRadius: 5.r,
             offset: const Offset(0, 8),
           ),
         ],
@@ -325,26 +326,26 @@ class _MyHomePageState extends State<MyHomePage>
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
-            child: const Text(
+            child: Text(
               "🌟",
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30.sp),
             ),
           ),
-          const SizedBox(width: 14),
+          SizedBox(width: 14.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Welcome to Kids Zone!",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -352,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage>
                   "Tap any card to start learning 🎯",
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
-                    fontSize: 13,
+                    fontSize: 13.sp,
                   ),
                 ),
               ],
@@ -389,22 +390,22 @@ class _MyHomePageState extends State<MyHomePage>
             ? ConstantDimensions.heightSmallImage
             : ConstantDimensions.heightBigImage,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25.r),
           boxShadow: [
             BoxShadow(
               color: category.color.withValues(alpha: 0.4),
-              blurRadius: 15,
-              spreadRadius: 2,
+              blurRadius: 15.r,
+              spreadRadius: 2.r,
               offset: const Offset(0, 8),
             ),
           ],
           border: Border.all(
             color: Colors.white.withValues(alpha: 0.8),
-            width: 3,
+            width: 3.w,
           ),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25.r),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -419,7 +420,7 @@ class _MyHomePageState extends State<MyHomePage>
                       child: Center(
                         child: Text(
                           category.emoji,
-                          style: const TextStyle(fontSize: 60),
+                          style: TextStyle(fontSize: 60.sp),
                         ),
                       ),
                     );
@@ -441,23 +442,23 @@ class _MyHomePageState extends State<MyHomePage>
               ),
               if (done)
                 Positioned(
-                  top: 8,
-                  right: 8,
+                  top: 8.h,
+                  right: 8.w,
                   child: Container(
-                    padding: const EdgeInsets.all(4),
+                    padding: EdgeInsets.all(4.w),
                     decoration: const BoxDecoration(
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.check_rounded,
                       color: Colors.white,
-                      size: 18,
+                      size: 18.sp,
                     ),
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(12.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -471,11 +472,11 @@ class _MyHomePageState extends State<MyHomePage>
                       ),
                       child: Text(
                         category.emoji,
-                        style: const TextStyle(
-                          fontSize: 28,
+                        style: TextStyle(
+                          fontSize: 28.sp,
                           shadows: [
                             Shadow(
-                              blurRadius: 10,
+                              blurRadius: 10.r,
                               color: Colors.black26,
                               offset: Offset(0, 2),
                             ),
@@ -483,16 +484,16 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Text(
                       category.title,
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style: TextStyle(
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            blurRadius: 8,
+                            blurRadius: 8.r,
                             color: Colors.black38,
                             offset: Offset(0, 2),
                           ),
@@ -502,26 +503,26 @@ class _MyHomePageState extends State<MyHomePage>
                     Text(
                       category.shortDesc,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 10.sp,
                         color: Colors.white.withValues(alpha: 0.9),
                         shadows: [
                           Shadow(
-                            blurRadius: 6,
+                            blurRadius: 6.r,
                             color: Colors.black38,
                             offset: Offset(0, 2),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    SizedBox(height: 6.h),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.w,
+                        vertical: 2.h,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.25),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -530,15 +531,15 @@ class _MyHomePageState extends State<MyHomePage>
                             "Explore",
                             style: TextStyle(
                               color: Colors.white.withValues(alpha: 0.9),
-                              fontSize: 8,
+                              fontSize: 8.sp,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(width: 4),
+                          SizedBox(width: 4.w),
                           Icon(
                             Icons.arrow_forward_rounded,
                             color: Colors.white.withValues(alpha: 0.9),
-                            size: 10,
+                            size: 10.sp,
                           ),
                         ],
                       ),

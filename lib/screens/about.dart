@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
@@ -47,31 +48,31 @@ class _AboutPageState extends State<AboutPage>
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               '🧸 About',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 24.sp,
                 shadows: [
                   Shadow(
-                    blurRadius: 10,
+                    blurRadius: 10.r,
                     color: Colors.black26,
                     offset: Offset(0, 2),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.3),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
-              child: const Text(
+              child: Text(
                 "✨",
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14.sp),
               ),
             ),
           ],
@@ -92,7 +93,7 @@ class _AboutPageState extends State<AboutPage>
         ),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: AnimatedBuilder(
             animation: _animationController,
             builder: (context, child) {
@@ -102,17 +103,17 @@ class _AboutPageState extends State<AboutPage>
                   opacity: _fadeAnimation.value,
                   child: Column(
                     children: [
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       _buildHeader(),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       _buildAppInfoCard(),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       _buildPurposeCard(),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       _buildFeaturesSection(),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       _buildFooter(),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       _buildDecorativeFooter(),
                     ],
                   ),
@@ -127,72 +128,72 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
         boxShadow: [
           BoxShadow(
             color: Colors.orange.withValues(alpha: 0.3),
-            blurRadius: 20,
-            spreadRadius: 5,
+            blurRadius: 20.r,
+            spreadRadius: 5.r,
             offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Column(
         children: [
-          const Text(
+          Text(
             "🎓 Kids Learning App",
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               shadows: [
                 Shadow(
-                  blurRadius: 10,
+                  blurRadius: 10.r,
                   color: Colors.black26,
                   offset: Offset(0, 2),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "Fun Learning for Kids",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: Colors.white70,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: const Text(
+                child: Text(
                   "👶",
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16.sp),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildBadge("📌 Version", "1.2.0"),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
               _buildBadge("👨‍💻", "IR Tech Solution"),
             ],
           ),
@@ -203,31 +204,31 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildBadge(String label, String value) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
           color: Colors.white.withValues(alpha: 0.3),
-          width: 1,
+          width: 1.w,
         ),
       ),
       child: Row(
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: 12.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(width: 4),
+          SizedBox(width: 4.w),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: 12.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -238,48 +239,48 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildAppInfoCard() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 15,
-            spreadRadius: 2,
+            blurRadius: 15.r,
+            spreadRadius: 2.r,
             offset: const Offset(0, 5),
           ),
         ],
         border: Border.all(
           color: const Color(0xFFFF6B6B).withValues(alpha: 0.2),
-          width: 2,
+          width: 2.w,
         ),
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.favorite_rounded,
               color: Colors.white,
-              size: 30,
+              size: 30.sp,
             ),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Made with ❤️",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFFF6B6B),
                   ),
@@ -287,7 +288,7 @@ class _AboutPageState extends State<AboutPage>
                 Text(
                   "Designed especially for curious little minds!",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     color: Colors.grey.shade600,
                   ),
                 ),
@@ -301,25 +302,25 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildPurposeCard() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Colors.blue.shade50, Colors.blue.shade100],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
             color: Colors.blue.withValues(alpha: 0.1),
-            blurRadius: 15,
-            spreadRadius: 2,
+            blurRadius: 15.r,
+            spreadRadius: 2.r,
             offset: const Offset(0, 5),
           ),
         ],
         border: Border.all(
           color: Colors.blue.shade200,
-          width: 2,
+          width: 2.w,
         ),
       ),
       child: Column(
@@ -327,35 +328,35 @@ class _AboutPageState extends State<AboutPage>
         children: [
           Row(
             children: [
-              const Text(
+              Text(
                 "🎯 Purpose",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1976D2),
                 ),
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.all(6),
+                padding: EdgeInsets.all(6.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.lightbulb_rounded,
                   color: Colors.amber,
-                  size: 20,
+                  size: 20.sp,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           Text(
             "This app is designed for kids to enjoy learning in a fun, interactive way. "
                 "It helps children explore alphabets, animals, birds, colors, fruits, the solar system, and more with visual and audio support.",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 15.sp,
               color: Colors.grey.shade800,
               height: 1.5,
             ),
@@ -379,15 +380,15 @@ class _AboutPageState extends State<AboutPage>
     ];
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 15,
-            spreadRadius: 2,
+            blurRadius: 15.r,
+            spreadRadius: 2.r,
             offset: const Offset(0, 5),
           ),
         ],
@@ -397,25 +398,25 @@ class _AboutPageState extends State<AboutPage>
         children: [
           Row(
             children: [
-              const Text(
+              Text(
                 "✨ Learning Modules",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFFF6B6B),
                 ),
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.all(4),
+                padding: EdgeInsets.all(4.w),
                 decoration: BoxDecoration(
                   color: Colors.amber.shade100,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Text(
                   "${features.length}",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.amber.shade700,
                   ),
@@ -423,7 +424,7 @@ class _AboutPageState extends State<AboutPage>
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           ...features.map((feature) => _buildFeature(
             feature["emoji"]!,
             feature["title"]!,
@@ -436,40 +437,40 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildFeature(String emoji, String title, String desc) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.only(bottom: 10.h),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
           color: const Color(0xFF4DD0E1).withValues(alpha: 0.3),
-          width: 1,
+          width: 1.w,
         ),
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
               ),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12.r),
             ),
             child: Text(
               emoji,
-              style: const TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20.sp),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00ACC1),
                   ),
@@ -477,17 +478,17 @@ class _AboutPageState extends State<AboutPage>
                 Text(
                   desc,
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     color: Colors.grey.shade600,
                   ),
                 ),
               ],
             ),
           ),
-          const Icon(
+          Icon(
             Icons.arrow_forward_ios_rounded,
             color: Colors.grey,
-            size: 14,
+            size: 14.sp,
           ),
         ],
       ),
@@ -497,19 +498,19 @@ class _AboutPageState extends State<AboutPage>
   Widget _buildFooter() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
             color: Colors.orange.withValues(alpha: 0.3),
-            blurRadius: 20,
-            spreadRadius: 5,
+            blurRadius: 20.r,
+            spreadRadius: 5.r,
             offset: const Offset(0, 8),
           ),
         ],
@@ -519,41 +520,41 @@ class _AboutPageState extends State<AboutPage>
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "🌈 Learning Made Fun!",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                   shadows: [
                     Shadow(
-                      blurRadius: 10,
+                      blurRadius: 10.r,
                       color: Colors.black26,
                       offset: Offset(0, 2),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
-                padding: const EdgeInsets.all(4),
+                padding: EdgeInsets.all(4.w),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: const Text(
+                child: Text(
                   "🌟",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20.sp),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             "Made with ❤️ for Kids",
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.9),
-              fontSize: 14,
+              fontSize: 14.sp,
             ),
           ),
         ],
@@ -563,33 +564,33 @@ class _AboutPageState extends State<AboutPage>
 
   Widget _buildDecorativeFooter() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
           color: Colors.grey.shade200,
-          width: 1,
+          width: 1.w,
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Thank you for learning with us!",
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 14.sp,
               color: Colors.grey,
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.w),
           Row(
-            children: const [
+            children: [
               Text("⭐"),
-              SizedBox(width: 2),
+              SizedBox(width: 2.w),
               Text("⭐"),
-              SizedBox(width: 2),
+              SizedBox(width: 2.w),
               Text("⭐"),
 
             ],

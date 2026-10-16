@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/utils/app_assets_path/assets_path.dart';
 import 'package:kids_learning_app/utils/constant/constants.dart';
@@ -409,27 +410,27 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
       context: context,
       barrierDismissible: false,
       builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
         backgroundColor: Colors.white,
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 60)),
-              const SizedBox(height: 8),
+              Text(emoji, style: TextStyle(fontSize: 60.sp)),
+              SizedBox(height: 8.h),
               Text(
                 '🎉 Puzzle Complete!',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFFF6B6B)),
+                style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold, color: Color(0xFFFF6B6B)),
               ),
-              const SizedBox(height: 8),
-              Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color)),
-              const SizedBox(height: 16),
+              SizedBox(height: 8.h),
+              Text(title, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: color)),
+              SizedBox(height: 16.h),
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade50,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -441,9 +442,9 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              Text(message, style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.w600), textAlign: TextAlign.center),
-              const SizedBox(height: 20),
+              SizedBox(height: 16.h),
+              Text(message, style: TextStyle(fontSize: 16.sp, color: color, fontWeight: FontWeight.w600), textAlign: TextAlign.center),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -454,11 +455,11 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
                     ),
                     child: const Text('Back', style: TextStyle(color: Colors.white)),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: 12.w),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -473,7 +474,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
                     ),
                     child: const Text('Play Again', style: TextStyle(color: Colors.white)),
                   ),
@@ -489,9 +490,9 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
   Widget _buildStatItem(String icon, String value, String label) {
     return Column(
       children: [
-        Text(icon, style: const TextStyle(fontSize: 24)),
-        Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFFFF6B6B))),
-        Text(label, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+        Text(icon, style: TextStyle(fontSize: 24.sp)),
+        Text(value, style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Color(0xFFFF6B6B))),
+        Text(label, style: TextStyle(fontSize: 12.sp, color: Colors.grey.shade600)),
       ],
     );
   }
@@ -530,17 +531,17 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('🧩', style: TextStyle(fontSize: 28)),
-            const SizedBox(width: 8),
-            const Text(
+            Text('🧩', style: TextStyle(fontSize: 28.sp)),
+            SizedBox(width: 8.w),
+            Text(
               'Puzzle Games',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22),
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 22.sp),
             ),
           ],
         ),
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22.sp),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
@@ -563,18 +564,18 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
         ),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             children: [
               _buildHeader(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 14,
-                  mainAxisSpacing: 14,
+                  crossAxisSpacing: 14.w,
+                  mainAxisSpacing: 14.h,
                   childAspectRatio: 0.85,
                 ),
                 itemCount: _allPuzzles.length,
@@ -601,7 +602,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   );
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
             ],
           ),
         ),
@@ -611,33 +612,33 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)]),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(15.r),
             ),
-            child: const Text('🧩', style: TextStyle(fontSize: 28)),
+            child: Text('🧩', style: TextStyle(fontSize: 28.sp)),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Choose a Puzzle!',
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   'Tap any category to start 🎯',
-                  style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 13),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.9), fontSize: 13.sp),
                 ),
               ],
             ),
@@ -652,7 +653,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
       onTap: () => _startPuzzle(category),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25.r),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -661,21 +662,21 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
           boxShadow: [
             BoxShadow(
               color: color.withValues(alpha: 0.3),
-              blurRadius: 15,
-              spreadRadius: 2,
+              blurRadius: 15.r,
+              spreadRadius: 2.r,
               offset: const Offset(0, 6),
             ),
           ],
-          border: Border.all(color: color.withValues(alpha: 0.3), width: 2),
+          border: Border.all(color: color.withValues(alpha: 0.3), width: 2.w),
         ),
         child: Stack(
           children: [
             Positioned(
-              top: -20,
-              right: -20,
+              top: -20.h,
+              right: -20.w,
               child: Container(
-                width: 60,
-                height: 60,
+                width: 60.r,
+                height: 60.r,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: color.withValues(alpha: 0.1),
@@ -683,11 +684,11 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
               ),
             ),
             Positioned(
-              bottom: -15,
-              left: -15,
+              bottom: -15.h,
+              left: -15.w,
               child: Container(
-                width: 40,
-                height: 40,
+                width: 40.r,
+                height: 40.r,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: color.withValues(alpha: 0.1),
@@ -698,7 +699,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12.w),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: gradient,
@@ -709,50 +710,50 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   ),
                   child: Text(
                     emoji,
-                    style: const TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 30.sp),
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Text(
                   category,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
                   decoration: BoxDecoration(
                     color: color.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                   ),
                   child: Text(
                     '$count puzzles',
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 11.sp,
                       color: color,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4.h),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Colors.amber, Colors.orange],
                     ),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.play_arrow_rounded, color: Colors.white, size: 12),
+                      Icon(Icons.play_arrow_rounded, color: Colors.white, size: 12.sp),
                       Text(
                         ' Play',
-                        style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 10.sp, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -786,37 +787,37 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
           children: [
             Text(
               puzzleEmoji,
-              style: const TextStyle(fontSize: 22),
+              style: TextStyle(fontSize: 22.sp),
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8.w),
             Expanded(
               child: Text(
                 _selectedCategory,
-                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18),
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.sp),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22.sp),
           onPressed: _goBack,
         ),
         actions: [
           Container(
-            margin: const EdgeInsets.only(right: 12),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: EdgeInsets.only(right: 12.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: Row(
               children: [
-                const Icon(Icons.star_rounded, color: Colors.amber, size: 18),
-                const SizedBox(width: 4),
+                Icon(Icons.star_rounded, color: Colors.amber, size: 18.sp),
+                SizedBox(width: 4.w),
                 Text(
                   '$_score',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.sp),
                 ),
               ],
             ),
@@ -826,19 +827,19 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.w),
             child: Column(
               children: [
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
+                        blurRadius: 10.r,
                         offset: const Offset(0, 4),
                       ),
                     ],
@@ -846,29 +847,29 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
                           ),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
                         child: Text(
                           '${_currentPuzzleIndex + 1}/$total',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 12),
-                          height: 8,
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          height: 8.h,
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: FractionallySizedBox(
                             widthFactor: progress / 100,
@@ -877,7 +878,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                                 gradient: const LinearGradient(
                                   colors: [Colors.amber, Colors.orange],
                                 ),
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
                           ),
@@ -885,20 +886,20 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                       ),
                       if (_streak > 0)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                           decoration: BoxDecoration(
                             color: Colors.orange.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                           ),
                           child: Row(
                             children: [
-                              const Icon(Icons.local_fire_department_rounded, color: Colors.orange, size: 14),
+                              Icon(Icons.local_fire_department_rounded, color: Colors.orange, size: 14.sp),
                               Text(
                                 '$_streak',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: Colors.orange,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 13,
+                                  fontSize: 13.sp,
                                 ),
                               ),
                             ],
@@ -907,24 +908,24 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 AnimatedBuilder(
                   animation: _mainController,
                   builder: (context, child) {
                     return Transform.scale(
                       scale: _scaleAnimation.value,
                       child: Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: EdgeInsets.all(20.w),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(25.r),
                           boxShadow: [
                             BoxShadow(
                               color: _answered
                                   ? (_isCorrect ? Colors.green.withValues(alpha: 0.2) : Colors.red.withValues(alpha: 0.2))
                                   : Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 15,
-                              spreadRadius: 2,
+                              blurRadius: 15.r,
+                              spreadRadius: 2.r,
                               offset: const Offset(0, 6),
                             ),
                           ],
@@ -932,7 +933,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                             color: _answered
                                 ? (_isCorrect ? Colors.green : Colors.red)
                                 : puzzleBgColor,
-                            width: 3,
+                            width: 3.w,
                           ),
                         ),
                         child: Column(
@@ -940,40 +941,40 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                           children: [
                             if (puzzleEmoji.isNotEmpty && puzzleImage.isEmpty)
                               Container(
-                                padding: const EdgeInsets.all(12),
+                                padding: EdgeInsets.all(12.w),
                                 decoration: BoxDecoration(
                                   color: puzzleBgColor.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Text(
                                   puzzleEmoji,
-                                  style: const TextStyle(fontSize: 50),
+                                  style: TextStyle(fontSize: 50.sp),
                                 ),
                               ),
                             if (puzzleImage.isNotEmpty)
                               Container(
-                                height: 100,
-                                margin: const EdgeInsets.only(bottom: 8),
+                                height: 100.h,
+                                margin: EdgeInsets.only(bottom: 8.h),
                                 child: puzzleImage.contains('.svg')
                                     ? Image.asset(puzzleImage, fit: BoxFit.contain)
                                     : Image.asset(puzzleImage, fit: BoxFit.contain),
                               ),
                             if (puzzleHint.isNotEmpty)
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: Colors.blue.shade50,
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Text('💡', style: TextStyle(fontSize: 16)),
-                                    const SizedBox(width: 6),
+                                    Text('💡', style: TextStyle(fontSize: 16.sp)),
+                                    SizedBox(width: 6.w),
                                     Text(
                                       puzzleHint,
-                                      style: const TextStyle(
-                                        fontSize: 15,
+                                      style: TextStyle(
+                                        fontSize: 15.sp,
                                         fontWeight: FontWeight.w600,
                                         color: Color(0xFF1976D2),
                                       ),
@@ -981,11 +982,11 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                                   ],
                                 ),
                               ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8.h),
                             Text(
                               puzzleQuestion,
-                              style: const TextStyle(
-                                fontSize: 20,
+                              style: TextStyle(
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF1976D2),
                               ),
@@ -993,24 +994,24 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                             ),
                             if (_answered && _isCorrect)
                               Container(
-                                margin: const EdgeInsets.only(top: 8),
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                                margin: EdgeInsets.only(top: 8.h),
+                                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: Colors.green.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15.r),
                                   border: Border.all(color: Colors.green),
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(Icons.star_rounded, color: Colors.amber, size: 18),
-                                    const SizedBox(width: 4),
+                                    Icon(Icons.star_rounded, color: Colors.amber, size: 18.sp),
+                                    SizedBox(width: 4.w),
                                     Text(
                                       '+${10 + (_streak - 1) * 2} pts',
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: Colors.green,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 14,
+                                        fontSize: 14.sp,
                                       ),
                                     ),
                                   ],
@@ -1022,13 +1023,13 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     );
                   },
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.h),
                 Expanded(
                   child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12.w,
+                      mainAxisSpacing: 12.h,
                       childAspectRatio: 2.5,
                     ),
                     itemCount: _options.length,
@@ -1067,12 +1068,12 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: bgColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: borderColor, width: 3),
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  border: Border.all(color: borderColor, width: 3.w),
                                   boxShadow: [
                                     BoxShadow(
                                       color: borderColor.withValues(alpha: 0.2),
-                                      blurRadius: 8,
+                                      blurRadius: 8.r,
                                       offset: const Offset(0, 4),
                                     ),
                                   ],
@@ -1082,14 +1083,14 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       if (_answered && isCorrectAnswer)
-                                        const Icon(Icons.check_circle_rounded, color: Colors.green, size: 24),
+                                        Icon(Icons.check_circle_rounded, color: Colors.green, size: 24.sp),
                                       if (_answered && showWrong)
-                                        const Icon(Icons.cancel_rounded, color: Colors.red, size: 24),
-                                      if (_answered && (isCorrectAnswer || showWrong)) const SizedBox(width: 8),
+                                        Icon(Icons.cancel_rounded, color: Colors.red, size: 24.sp),
+                                      if (_answered && (isCorrectAnswer || showWrong)) SizedBox(width: 8.w),
                                       Text(
                                         _options[index],
                                         style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
                                           color: textColor,
                                         ),
@@ -1105,7 +1106,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> with TickerProviderStateMix
                     },
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
               ],
             ),
           ),

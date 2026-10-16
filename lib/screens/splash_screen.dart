@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -98,70 +99,70 @@ class _SplashScreenState extends State<SplashScreen>
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16.w),
                               decoration: BoxDecoration(
                                 color: Colors.white.withValues(alpha: 0.95),
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(30.r),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black.withValues(alpha: 0.2),
-                                    blurRadius: 30,
-                                    spreadRadius: 10,
+                                    blurRadius: 30.r,
+                                    spreadRadius: 10.r,
                                     offset: const Offset(0, 15),
                                   ),
                                 ],
                                 border: Border.all(
                                   color: Colors.white,
-                                  width: 4,
+                                  width: 4.w,
                                 ),
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                                 child: Image.asset(
                                   "assets/logo/image.png",
-                                  height: 130,
-                                  width: 130,
+                                  height: 130.r,
+                                  width: 130.r,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 30),
+                            SizedBox(height: 30.h),
                             SlideTransition(
                               position: _slideAnimation,
                               child: FadeTransition(
                                 opacity: _fadeAnimation,
                                 child: Column(
                                   children: [
-                                    const Text(
+                                    Text(
                                       "KiddoMind",
                                       style: TextStyle(
-                                        fontSize: 38,
+                                        fontSize: 38.sp,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         letterSpacing: 2,
                                         shadows: [
                                           Shadow(
-                                            blurRadius: 10,
+                                            blurRadius: 10.r,
                                             color: Colors.black26,
                                             offset: Offset(0, 3),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(height: 6),
+                                    SizedBox(height: 6.h),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                        vertical: 4,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 16.w,
+                                        vertical: 4.h,
                                       ),
                                       decoration: BoxDecoration(
                                         color: Colors.white.withValues(alpha: 0.3),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(20.r),
                                       ),
-                                      child: const Text(
+                                      child: Text(
                                         "🧸 Fun Learning for Kids",
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 16.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500,
                                           letterSpacing: 1,
@@ -172,24 +173,24 @@ class _SplashScreenState extends State<SplashScreen>
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 40),
+                            SizedBox(height: 40.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _buildLoadingDot(0),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
                                 _buildLoadingDot(1),
-                                const SizedBox(width: 12),
+                                SizedBox(width: 12.w),
                                 _buildLoadingDot(2),
                               ],
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16.h),
                             FadeTransition(
                               opacity: _fadeAnimation,
-                              child: const Text(
+                              child: Text(
                                 "Loading...",
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 14.sp,
                                   color: Colors.white70,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -204,7 +205,7 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             Positioned(
-              bottom: 30,
+              bottom: 30.h,
               left: 0,
               right: 0,
               child: Center(
@@ -212,7 +213,7 @@ class _SplashScreenState extends State<SplashScreen>
                   "✨ Made with ❤️",
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.5),
-                    fontSize: 12,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -233,16 +234,16 @@ class _SplashScreenState extends State<SplashScreen>
         return Transform.scale(
           scale: 0.5 + (scale * 0.5),
           child: Container(
-            width: 16,
-            height: 16,
+            width: 16.r,
+            height: 16.r,
             decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: Colors.white.withValues(alpha: 0.3),
-                  blurRadius: 10,
-                  spreadRadius: 5,
+                  blurRadius: 10.r,
+                  spreadRadius: 5.r,
                 ),
               ],
             ),
@@ -279,7 +280,7 @@ class _SplashScreenState extends State<SplashScreen>
                 opacity: opacity.clamp(0.0, 1.0),
                 child: Text(
                   element["emoji"] as String,
-                  style: const TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 30.sp),
                 ),
               ),
             );

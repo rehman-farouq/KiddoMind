@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawingBoardPage extends StatelessWidget {
@@ -130,10 +131,10 @@ class _DrawingBoardState extends State<DrawingBoard>
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
-            fontSize: 24,
+            fontSize: 24.sp,
             shadows: [
               Shadow(
-                blurRadius: 10,
+                blurRadius: 10.r,
                 color: Colors.black26,
                 offset: Offset(0, 2),
               ),
@@ -147,7 +148,7 @@ class _DrawingBoardState extends State<DrawingBoard>
             icon: Icon(
               Icons.undo_rounded,
               color: undoStack.isNotEmpty ? Colors.white : Colors.white54,
-              size: 28,
+              size: 28.sp,
             ),
             tooltip: 'Undo',
           ),
@@ -156,31 +157,31 @@ class _DrawingBoardState extends State<DrawingBoard>
             icon: Icon(
               Icons.cleaning_services_rounded,
               color: points.isNotEmpty ? Colors.white : Colors.white54,
-              size: 28,
+              size: 28.sp,
             ),
             tooltip: 'Clear',
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.w),
         ],
       ),
       body: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.all(8),
+            margin: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(25.r),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  spreadRadius: 2,
+                  blurRadius: 15.r,
+                  spreadRadius: 2.r,
                   offset: const Offset(0, 5),
                 ),
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(25.r),
               child: GestureDetector(
                 onPanStart: (details) {
                   final currentColor = _getCurrentColor();
@@ -227,18 +228,18 @@ class _DrawingBoardState extends State<DrawingBoard>
           ),
 
           Positioned(
-            top: 16,
-            left: 16,
-            right: 16,
+            top: 16.h,
+            left: 16.w,
+            right: 16.w,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.95),
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 10,
+                    blurRadius: 10.r,
                     offset: const Offset(0, 4),
                   ),
                 ],
@@ -246,24 +247,24 @@ class _DrawingBoardState extends State<DrawingBoard>
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(6),
+                    padding: EdgeInsets.all(6.w),
                     decoration: BoxDecoration(
                       color: Colors.blue.shade50,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.create_rounded,
                       color: Color(0xFF1976D2),
-                      size: 20,
+                      size: 20.sp,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   Expanded(
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.fiber_manual_record_rounded,
-                          size: 12,
+                          size: 12.sp,
                           color: Colors.grey,
                         ),
                         Expanded(
@@ -277,9 +278,9 @@ class _DrawingBoardState extends State<DrawingBoard>
                             },
                           ),
                         ),
-                        const Icon(
+                        Icon(
                           Icons.fiber_manual_record_rounded,
-                          size: 20,
+                          size: 20.sp,
                           color: Colors.grey,
                         ),
                       ],
@@ -303,7 +304,7 @@ class _DrawingBoardState extends State<DrawingBoard>
                         return Transform.scale(
                           scale: isRainbowMode ? _bounceAnimation.value : 1.0,
                           child: Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8.w),
                             decoration: BoxDecoration(
                               gradient: isRainbowMode
                                   ? const LinearGradient(
@@ -318,25 +319,25 @@ class _DrawingBoardState extends State<DrawingBoard>
                               )
                                   : null,
                               color: isRainbowMode ? null : Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                               border: Border.all(
                                 color: isRainbowMode
                                     ? Colors.transparent
                                     : Colors.grey.shade300,
-                                width: 2,
+                                width: 2.w,
                               ),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.auto_awesome_rounded,
                               color: Colors.white,
-                              size: 22,
+                              size: 22.sp,
                             ),
                           ),
                         );
                       },
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  SizedBox(width: 4.w),
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -347,21 +348,21 @@ class _DrawingBoardState extends State<DrawingBoard>
                       });
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8.w),
                       decoration: BoxDecoration(
                         color: isEraser
                             ? Colors.orange.withValues(alpha: 0.3)
                             : Colors.grey.shade100,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(
                           color: isEraser ? Colors.orange : Colors.grey.shade300,
-                          width: 2,
+                          width: 2.w,
                         ),
                       ),
-                      child: const FaIcon(
+                      child: FaIcon(
                         FontAwesomeIcons.eraser,
                         color: Colors.black87,
-                        size: 20,
+                        size: 20.sp,
                       ),
                     ),
                   ),
@@ -371,19 +372,19 @@ class _DrawingBoardState extends State<DrawingBoard>
           ),
 
           Positioned(
-            bottom: 80,
+            bottom: 80.h,
             left: 0,
             right: 0,
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              margin: EdgeInsets.symmetric(horizontal: 16.w),
+              padding: EdgeInsets.symmetric(vertical: 8.h),
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.95),
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 10,
+                    blurRadius: 10.r,
                     offset: const Offset(0, 4),
                   ),
                 ],
@@ -392,9 +393,9 @@ class _DrawingBoardState extends State<DrawingBoard>
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     ...colors.map(_colorDot),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                   ],
                 ),
               ),
@@ -403,13 +404,13 @@ class _DrawingBoardState extends State<DrawingBoard>
         ],
       ),
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
+              blurRadius: 10.r,
               offset: const Offset(0, -4),
             ),
           ],
@@ -419,16 +420,16 @@ class _DrawingBoardState extends State<DrawingBoard>
           children: [
             Row(
               children: [
-                const Text(
+                Text(
                   "Color: ",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                   ),
                 ),
                 Container(
-                  width: 30,
-                  height: 30,
+                  width: 30.r,
+                  height: 30.r,
                   decoration: BoxDecoration(
                     color: isEraser
                         ? Colors.grey.shade200
@@ -438,7 +439,7 @@ class _DrawingBoardState extends State<DrawingBoard>
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.grey.shade300,
-                      width: 2,
+                      width: 2.w,
                     ),
                     gradient: isRainbowMode
                         ? const LinearGradient(
@@ -454,21 +455,21 @@ class _DrawingBoardState extends State<DrawingBoard>
                         : null,
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 if (isRainbowMode)
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 2.h,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.amber.shade100,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
-                    child: const Text(
+                    child: Text(
                       "🌈 Rainbow",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.amber,
                       ),
@@ -476,18 +477,18 @@ class _DrawingBoardState extends State<DrawingBoard>
                   ),
                 if (isEraser)
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 2.h,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.orange.shade100,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
-                    child: const Text(
+                    child: Text(
                       "🧹 Eraser",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.orange,
                       ),
@@ -498,19 +499,19 @@ class _DrawingBoardState extends State<DrawingBoard>
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.draw_rounded, size: 16, color: Colors.grey),
-                      const SizedBox(width: 4),
+                      Icon(Icons.draw_rounded, size: 16.sp, color: Colors.grey),
+                      SizedBox(width: 4.w),
                       Text(
                         "${points.where((p) => p == null).length} strokes",
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style: TextStyle(
+                          fontSize: 12.sp,
                           color: Colors.grey,
                         ),
                       ),
@@ -538,36 +539,36 @@ class _DrawingBoardState extends State<DrawingBoard>
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        margin: const EdgeInsets.symmetric(horizontal: 6),
-        width: isSelected ? 42 : 32,
-        height: isSelected ? 42 : 32,
+        margin: EdgeInsets.symmetric(horizontal: 6.w),
+        width: isSelected ? 42.r : 32.r,
+        height: isSelected ? 42.r : 32.r,
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,
           border: Border.all(
             color: isSelected ? Colors.black : Colors.transparent,
-            width: 3,
+            width: 3.w,
           ),
           boxShadow: isSelected
               ? [
             BoxShadow(
               color: color.withValues(alpha: 0.4),
-              blurRadius: 10,
-              spreadRadius: 2,
+              blurRadius: 10.r,
+              spreadRadius: 2.r,
             ),
           ]
               : [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 4,
+              blurRadius: 4.r,
             ),
           ],
         ),
         child: isSelected
-            ? const Icon(
+            ? Icon(
           Icons.check_rounded,
           color: Colors.white,
-          size: 18,
+          size: 18.sp,
         )
             : null,
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/widgets/learn/learn_models.dart';
 import 'package:kids_learning_app/widgets/learn/learn_view.dart';
@@ -52,18 +53,18 @@ class _LearnModulePageState extends State<LearnModulePage> {
           _config.title,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 20.sp,
             shadows: [
-              Shadow(blurRadius: 10, color: Colors.black26, offset: Offset(0, 2)),
+              Shadow(blurRadius: 10.r, color: Colors.black26, offset: Offset(0, 2)),
             ],
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 12),
+            padding: EdgeInsets.only(right: 12.w),
             child: _ModeSwitch(isQuiz: _isQuiz, onChanged: _setMode),
           ),
         ],
@@ -113,15 +114,15 @@ class _ModeSwitch extends StatelessWidget {
         onTap: onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
           decoration: BoxDecoration(
             color: selected ? Colors.white : Colors.transparent,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: Text(
             label,
             style: TextStyle(
-              fontSize: 13,
+              fontSize: 13.sp,
               fontWeight: FontWeight.bold,
               color: selected ? const Color(0xFFFF6B6B) : Colors.white,
             ),
@@ -131,10 +132,10 @@ class _ModeSwitch extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(3),
+      padding: EdgeInsets.all(3.w),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.25),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(18.r),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

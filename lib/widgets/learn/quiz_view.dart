@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:kids_learning_app/widgets/learn/learn_models.dart';
@@ -170,18 +171,18 @@ class _QuizViewState extends State<QuizView>
             (constraints.maxHeight * 0.38).clamp(170.0, 300.0).toDouble();
         return SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             children: [
               _header(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               ScaleTransition(
                 scale: _scale,
                 child: SizedBox(height: cardHeight, child: _questionCard(q)),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _promptPill(q),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               _options(q),
             ],
           ),
@@ -192,22 +193,22 @@ class _QuizViewState extends State<QuizView>
 
   Widget _header() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
+            blurRadius: 10.r,
             offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
-        runSpacing: 8,
-        spacing: 8,
+        runSpacing: 8.h,
+        spacing: 8.w,
         children: [
           ScoreChip(emoji: '🎯', label: 'Q${_index + 1}/${_questions.length}'),
           ScoreChip(emoji: '⭐', label: '$_score pts'),
@@ -243,29 +244,29 @@ class _QuizViewState extends State<QuizView>
               Colors.white,
             ],
           ),
-          borderRadius: BorderRadius.circular(35),
-          border: Border.all(color: border, width: _answered ? 6 : 4),
+          borderRadius: BorderRadius.circular(35.r),
+          border: Border.all(color: border, width: _answered ? 6.w : 4.w),
           boxShadow: [
             BoxShadow(
               color: q.color.withValues(alpha: 0.4),
-              blurRadius: 30,
-              spreadRadius: 5,
+              blurRadius: 30.r,
+              spreadRadius: 5.r,
               offset: const Offset(0, 10),
             ),
           ],
         ),
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16.w),
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
             q.headline ?? '',
-            style: const TextStyle(
-              fontSize: 64,
+            style: TextStyle(
+              fontSize: 64.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               shadows: [
-                Shadow(blurRadius: 10, color: Colors.black38, offset: Offset(0, 3)),
+                Shadow(blurRadius: 10.r, color: Colors.black38, offset: Offset(0, 3)),
               ],
             ),
           ),
@@ -278,14 +279,14 @@ class _QuizViewState extends State<QuizView>
         Positioned.fill(child: card),
         if (_answered && _correct)
           Positioned(
-            top: 10,
-            left: 16,
-            right: 16,
+            top: 10.h,
+            left: 16.w,
+            right: 16.w,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
               decoration: BoxDecoration(
                 color: Colors.green.withValues(alpha: 0.9),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Text(
                 _attempts == 1
@@ -296,10 +297,10 @@ class _QuizViewState extends State<QuizView>
                             ? '💪 WELL DONE!'
                             : '✅ CORRECT!',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 18.sp,
                 ),
               ),
             ),
@@ -310,10 +311,10 @@ class _QuizViewState extends State<QuizView>
 
   Widget _promptPill(QuizQuestion q) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
         border: Border.all(color: Colors.blue.shade200),
       ),
       child: Row(
@@ -323,8 +324,8 @@ class _QuizViewState extends State<QuizView>
             child: Text(
               '${widget.config.quizDecor} ${q.prompt}',
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
+              style: TextStyle(
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF1976D2),
               ),
@@ -332,18 +333,18 @@ class _QuizViewState extends State<QuizView>
           ),
           if (_attempts > 0 && !_answered)
             Container(
-              margin: const EdgeInsets.only(left: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              margin: EdgeInsets.only(left: 8.w),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
               decoration: BoxDecoration(
                 color: Colors.orange,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               child: Text(
                 'Try $_attempts',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 12.sp,
                 ),
               ),
             ),
@@ -357,8 +358,8 @@ class _QuizViewState extends State<QuizView>
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
+      crossAxisSpacing: 12.w,
+      mainAxisSpacing: 12.h,
       childAspectRatio: 2.8,
       children: List.generate(q.options.length, (i) {
         final selected = _selected == i;
@@ -380,18 +381,18 @@ class _QuizViewState extends State<QuizView>
                       ? const [Colors.red, Colors.redAccent]
                       : [Colors.white, Colors.grey.shade50],
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             border: Border.all(
               color: accent ?? Colors.grey.shade300,
-              width: accent != null ? 4 : 2,
+              width: accent != null ? 4.w : 2.w,
             ),
             boxShadow: [
               BoxShadow(
                 color: (accent ?? Colors.black).withValues(
                   alpha: accent != null ? 0.3 : 0.05,
                 ),
-                blurRadius: accent != null ? 15 : 5,
-                spreadRadius: accent != null ? 3 : 0,
+                blurRadius: accent != null ? 15.r : 5.r,
+                spreadRadius: accent != null ? 3.r : 0,
                 offset: const Offset(0, 4),
               ),
             ],
@@ -400,9 +401,9 @@ class _QuizViewState extends State<QuizView>
             color: Colors.transparent,
             child: InkWell(
               onTap: _answered ? null : () => _select(i),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -410,9 +411,9 @@ class _QuizViewState extends State<QuizView>
                       Icon(
                         showCorrect ? Icons.check_circle : Icons.cancel,
                         color: Colors.white,
-                        size: 28,
+                        size: 28.sp,
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8.w),
                     ],
                     Flexible(
                       child: FittedBox(
@@ -420,7 +421,7 @@ class _QuizViewState extends State<QuizView>
                         child: Text(
                           q.options[i],
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                             color: accent != null
                                 ? Colors.white
@@ -452,16 +453,16 @@ class _QuizViewState extends State<QuizView>
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24.w),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 20,
+                blurRadius: 20.r,
                 offset: const Offset(0, 8),
               ),
             ],
@@ -469,22 +470,22 @@ class _QuizViewState extends State<QuizView>
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('🏆', style: TextStyle(fontSize: 72)),
-              const SizedBox(height: 8),
-              const Text(
+              Text('🏆', style: TextStyle(fontSize: 72.sp)),
+              SizedBox(height: 8.h),
+              Text(
                 'Quiz Complete!',
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 '$_score / $_maxScore pts',
-                style: const TextStyle(
-                  fontSize: 22,
+                style: TextStyle(
+                  fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.orange,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(
@@ -492,13 +493,13 @@ class _QuizViewState extends State<QuizView>
                   (i) => Icon(
                     i < stars ? Icons.star_rounded : Icons.star_border_rounded,
                     color: Colors.amber,
-                    size: 48,
+                    size: 48.sp,
                   ),
                 ),
               ),
               if (_starsEarned != null && stars > 0)
                 Padding(
-                  padding: const EdgeInsets.only(top: 4),
+                  padding: EdgeInsets.only(top: 4.h),
                   child: Text(
                     '+$stars ⭐ added!',
                     style: TextStyle(
@@ -507,17 +508,17 @@ class _QuizViewState extends State<QuizView>
                     ),
                   ),
                 ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 message,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 17, color: Colors.grey.shade700),
+                style: TextStyle(fontSize: 17.sp, color: Colors.grey.shade700),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 12,
-                runSpacing: 12,
+                spacing: 12.w,
+                runSpacing: 12.h,
                 children: [
                   ElevatedButton.icon(
                     onPressed: _start,
@@ -526,9 +527,9 @@ class _QuizViewState extends State<QuizView>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: widget.config.accent.first,
                       foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 12,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 12.h,
                       ),
                     ),
                   ),
@@ -537,9 +538,9 @@ class _QuizViewState extends State<QuizView>
                     icon: const Icon(Icons.menu_book_rounded),
                     label: const Text('Back to Learn'),
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 12,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 12.h,
                       ),
                     ),
                   ),

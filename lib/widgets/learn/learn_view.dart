@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:kids_learning_app/widgets/learn/learn_models.dart';
@@ -93,7 +94,7 @@ class _LearnViewState extends State<LearnView>
             (constraints.maxHeight - 290).clamp(220.0, 440.0).toDouble();
         return SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             children: [
               SegmentProgressBar(
@@ -101,7 +102,7 @@ class _LearnViewState extends State<LearnView>
                 current: _index,
                 trackColor: track,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               SizedBox(
                 height: cardHeight,
                 child: GestureDetector(
@@ -124,18 +125,18 @@ class _LearnViewState extends State<LearnView>
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               _infoPanel(item),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               _buttons(item),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               Text(
                 _config.swipeHint,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: _config.hintColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14,
+                  fontSize: 14.sp,
                 ),
               ),
             ],
@@ -149,15 +150,15 @@ class _LearnViewState extends State<LearnView>
     final color = nameColor(item.color);
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.95),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
         boxShadow: [
           BoxShadow(
             color: item.color.withValues(alpha: 0.3),
-            blurRadius: 15,
-            spreadRadius: 2,
+            blurRadius: 15.r,
+            spreadRadius: 2.r,
             offset: const Offset(0, 4),
           ),
         ],
@@ -168,15 +169,15 @@ class _LearnViewState extends State<LearnView>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (item.emoji != null && item.imageAsset != null) ...[
-                Text(item.emoji!, style: const TextStyle(fontSize: 28)),
-                const SizedBox(width: 10),
+                Text(item.emoji!, style: TextStyle(fontSize: 28.sp)),
+                SizedBox(width: 10.w),
               ],
               Flexible(
                 child: Text(
                   item.name,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
@@ -185,22 +186,22 @@ class _LearnViewState extends State<LearnView>
             ],
           ),
           if (item.description != null) ...[
-            const SizedBox(height: 6),
+            SizedBox(height: 6.h),
             Text(
               item.description!,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 color: Colors.grey.shade700,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ],
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             _config.tapHint,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 14.sp,
               color: Colors.grey.shade600,
               fontWeight: FontWeight.w500,
             ),
@@ -211,7 +212,7 @@ class _LearnViewState extends State<LearnView>
   }
 
   Widget _buttons(LearnItem item) {
-    Widget emoji(String e) => Text(e, style: const TextStyle(fontSize: 28));
+    Widget emoji(String e) => Text(e, style: TextStyle(fontSize: 28.sp));
     final children = <Widget>[
       RoundActionButton(
         colors: _config.accent,
@@ -221,16 +222,16 @@ class _LearnViewState extends State<LearnView>
       RoundActionButton(
         colors: _config.accent,
         onTap: _speak,
-        child: const Icon(Icons.volume_up_rounded, color: Colors.white, size: 32),
+        child: Icon(Icons.volume_up_rounded, color: Colors.white, size: 32.sp),
       ),
       if (item.soundAsset != null)
         RoundActionButton(
           colors: const [Colors.green, Colors.lightGreen],
           onTap: () => AppAudio.instance.playAsset(item.soundAsset!),
-          child: const Icon(
+          child: Icon(
             Icons.play_arrow_rounded,
             color: Colors.white,
-            size: 32,
+            size: 32.sp,
           ),
         ),
       RoundActionButton(
@@ -242,8 +243,8 @@ class _LearnViewState extends State<LearnView>
 
     return Wrap(
       alignment: WrapAlignment.center,
-      spacing: 12,
-      runSpacing: 12,
+      spacing: 12.w,
+      runSpacing: 12.h,
       children: children,
     );
   }
@@ -287,12 +288,12 @@ class ItemCard extends StatelessWidget {
                   Colors.white,
                 ],
               ),
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(40.r),
         boxShadow: [
           BoxShadow(
             color: color.withValues(alpha: 0.4),
-            blurRadius: 30,
-            spreadRadius: 5,
+            blurRadius: 30.r,
+            spreadRadius: 5.r,
             offset: const Offset(0, 10),
           ),
         ],
@@ -304,19 +305,19 @@ class ItemCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            top: 20,
-            right: 20,
+            top: 20.h,
+            right: 20.w,
             child: Text(
               config.decorTop,
-              style: TextStyle(fontSize: 30, color: decorColor),
+              style: TextStyle(fontSize: 30.sp, color: decorColor),
             ),
           ),
           Positioned(
-            bottom: 20,
-            left: 20,
+            bottom: 20.h,
+            left: 20.w,
             child: Text(
               config.decorBottom,
-              style: TextStyle(fontSize: 30, color: decorColor),
+              style: TextStyle(fontSize: 30.sp, color: decorColor),
             ),
           ),
           Center(child: _content(context)),
@@ -331,7 +332,7 @@ class ItemCard extends StatelessWidget {
         builder: (context, c) {
           final h = min(config.imageHeight, max(60.0, c.maxHeight - 40));
           return Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             child: AssetVisual(asset: item.imageAsset!, height: h),
           );
         },
@@ -347,11 +348,11 @@ class ItemCard extends StatelessWidget {
           if (showEmoji && item.emoji != null)
             Text(
               item.emoji!,
-              style: const TextStyle(
-                fontSize: 70,
+              style: TextStyle(
+                fontSize: 70.sp,
                 shadows: [
                   Shadow(
-                    blurRadius: 20,
+                    blurRadius: 20.r,
                     color: Colors.black26,
                     offset: Offset(0, 4),
                   ),
@@ -362,7 +363,7 @@ class ItemCard extends StatelessWidget {
             Text(
               item.bigText!,
               style: TextStyle(
-                fontSize: 80,
+                fontSize: 80.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor,
               ),

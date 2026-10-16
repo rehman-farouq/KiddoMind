@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:kids_learning_app/utils/route/route_constant.dart';
@@ -16,15 +17,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ProgressProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'KiddoMind',
-        theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
-        initialRoute: AllRoutesConstant.splashRoute,
-        onGenerateRoute: Routers.generateRoute,
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return ChangeNotifierProvider(
+          create: (_) => ProgressProvider(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'KiddoMind',
+            theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
+            initialRoute: AllRoutesConstant.splashRoute,
+            onGenerateRoute: Routers.generateRoute,
+          ),
+        );
+      },
     );
   }
 }

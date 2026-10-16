@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 Color readableOn(Color background) =>
@@ -29,7 +30,7 @@ class AssetVisual extends StatelessWidget {
       height: height,
       fit: fit,
       errorBuilder: (_, _, _) =>
-          const Icon(Icons.image_not_supported_rounded, size: 48),
+          Icon(Icons.image_not_supported_rounded, size: 48.sp),
     );
   }
 }
@@ -49,18 +50,18 @@ class SegmentProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 8,
+      height: 8.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: trackColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
         children: List.generate(total, (i) {
           final active = i <= current;
           return Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 1.5),
+              margin: EdgeInsets.symmetric(horizontal: 1.5.w),
               decoration: BoxDecoration(
                 color: active ? Colors.amber : trackColor,
                 gradient: i == current
@@ -68,7 +69,7 @@ class SegmentProgressBar extends StatelessWidget {
                         colors: [Colors.amber, Colors.orange],
                       )
                     : null,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10.r),
               ),
             ),
           );
@@ -104,8 +105,8 @@ class RoundActionButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: colors.first.withValues(alpha: 0.3),
-              blurRadius: 15,
-              spreadRadius: 2,
+              blurRadius: 15.r,
+              spreadRadius: 2.r,
             ),
           ],
         ),
@@ -136,19 +137,19 @@ class ScoreChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.r),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 16)),
-          const SizedBox(width: 4),
+          Text(emoji, style: TextStyle(fontSize: 16.sp)),
+          SizedBox(width: 4.w),
           Text(
             label,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
           ),
         ],
       ),

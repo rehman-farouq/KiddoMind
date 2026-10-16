@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:kids_learning_app/widgets/learn/learn_models.dart';
@@ -170,7 +171,7 @@ class _TableLearnViewState extends State<_TableLearnView>
             (constraints.maxHeight - 300).clamp(200.0, 400.0).toDouble();
         return SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: Column(
             children: [
               SegmentProgressBar(
@@ -178,13 +179,13 @@ class _TableLearnViewState extends State<_TableLearnView>
                 current: _tableIndex,
                 trackColor: Colors.grey.shade200,
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               SizedBox(
-                height: 44,
+                height: 44.h,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: _tableNumbers.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 8),
+                  separatorBuilder: (_, _) => SizedBox(width: 8.w),
                   itemBuilder: (_, i) => ChoiceChip(
                     label: Text(
                       '${_tableNumbers[i]}',
@@ -199,7 +200,7 @@ class _TableLearnViewState extends State<_TableLearnView>
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               SizedBox(
                 height: cardHeight,
                 child: GestureDetector(
@@ -218,40 +219,40 @@ class _TableLearnViewState extends State<_TableLearnView>
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 12,
+                spacing: 12.w,
                 children: [
                   RoundActionButton(
                     colors: _config.accent,
                     onTap: () => _step(-1),
-                    child: const Text('👈', style: TextStyle(fontSize: 28)),
+                    child: Text('👈', style: TextStyle(fontSize: 28.sp)),
                   ),
                   RoundActionButton(
                     colors: _config.accent,
                     onTap: _speak,
-                    child: const Icon(
+                    child: Icon(
                       Icons.volume_up_rounded,
                       color: Colors.white,
-                      size: 32,
+                      size: 32.sp,
                     ),
                   ),
                   RoundActionButton(
                     colors: _config.accent,
                     onTap: () => _step(1),
-                    child: const Text('👉', style: TextStyle(fontSize: 28)),
+                    child: Text('👉', style: TextStyle(fontSize: 28.sp)),
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               Text(
                 _config.swipeHint,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: _config.hintColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14,
+                  fontSize: 14.sp,
                 ),
               ),
             ],
@@ -274,13 +275,13 @@ class _TableLearnViewState extends State<_TableLearnView>
             Colors.white,
           ],
         ),
-        borderRadius: BorderRadius.circular(40),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 6),
+        borderRadius: BorderRadius.circular(40.r),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 6.w),
         boxShadow: [
           BoxShadow(
             color: _color.withValues(alpha: 0.4),
-            blurRadius: 30,
-            spreadRadius: 5,
+            blurRadius: 30.r,
+            spreadRadius: 5.r,
             offset: const Offset(0, 10),
           ),
         ],
@@ -289,19 +290,19 @@ class _TableLearnViewState extends State<_TableLearnView>
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.w),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   '$_number × $_multiplier',
-                  style: const TextStyle(
-                    fontSize: 64,
+                  style: TextStyle(
+                    fontSize: 64.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     shadows: [
                       Shadow(
-                        blurRadius: 10,
+                        blurRadius: 10.r,
                         color: Colors.black38,
                         offset: Offset(0, 3),
                       ),
@@ -311,7 +312,7 @@ class _TableLearnViewState extends State<_TableLearnView>
                 Text(
                   '= $result',
                   style: TextStyle(
-                    fontSize: 80,
+                    fontSize: 80.sp,
                     fontWeight: FontWeight.bold,
                     color: nameColor(_color),
                   ),

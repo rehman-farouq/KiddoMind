@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_learning_app/core/audio_service.dart';
 import 'package:kids_learning_app/core/progress_provider.dart';
 import 'package:provider/provider.dart';
@@ -173,12 +174,12 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
         return Dialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
           ),
           child: Container(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.all(24.w),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               gradient: const LinearGradient(
                 colors: [Color(0xFFFFF3E0), Color(0xFFFFE0B2)],
                 begin: Alignment.topLeft,
@@ -190,27 +191,27 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
               children: [
                 Text(
                   emoji,
-                  style: const TextStyle(fontSize: 80),
+                  style: TextStyle(fontSize: 80.sp),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 28.sp,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(16.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
+                        blurRadius: 10.r,
                         offset: const Offset(0, 4),
                       ),
                     ],
@@ -224,25 +225,25 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12.w),
                   decoration: BoxDecoration(
                     color: color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     border: Border.all(color: color.withValues(alpha: 0.3)),
                   ),
                   child: Text(
                     message,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       color: color,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -254,7 +255,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                         _restartQuiz();
                       },
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12.w),
                     _buildResultButton(
                       "🏠 Home",
                       Colors.blue,
@@ -279,11 +280,11 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
   Widget _buildResultStat(String icon, String value, String label) {
     return Column(
       children: [
-        Text(icon, style: const TextStyle(fontSize: 24)),
+        Text(icon, style: TextStyle(fontSize: 24.sp)),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 22,
+          style: TextStyle(
+            fontSize: 22.sp,
             fontWeight: FontWeight.bold,
             color: Color(0xFFFF6B6B),
           ),
@@ -291,7 +292,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         Text(
           label,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 12.sp,
             color: Colors.grey.shade600,
           ),
         ),
@@ -305,17 +306,17 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
         ),
         elevation: 8,
         shadowColor: color.withValues(alpha: 0.4),
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 16,
+        style: TextStyle(
+          fontSize: 16.sp,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -334,23 +335,23 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => Navigator.pop(context),
-          iconSize: 28,
+          iconSize: 28.sp,
         ),
         title: Column(
           children: [
-            const Text(
+            Text(
               "🧩 Quiz Time!",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 22,
+                fontSize: 22.sp,
               ),
             ),
             Text(
               "Q${questionNumber + 1}/${AppConstants.ques.length}",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white70,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
           ],
@@ -358,26 +359,26 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         centerTitle: true,
         actions: [
           Container(
-            margin: const EdgeInsets.only(right: 12),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: EdgeInsets.only(right: 12.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.star_rounded,
                   color: Colors.amber,
-                  size: 20,
+                  size: 20.sp,
                 ),
-                const SizedBox(width: 4),
+                SizedBox(width: 4.w),
                 Text(
                   "$_score",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ],
@@ -391,37 +392,37 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
           return Transform.scale(
             scale: _scaleAnimation.value,
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               child: Column(
                 children: [
                   if (_streak > 0)
                     Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 6,
+                      margin: EdgeInsets.only(bottom: 12.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 6.h,
                       ),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [Colors.orange, Colors.red],
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.local_fire_department_rounded,
                             color: Colors.white,
-                            size: 20,
+                            size: 20.sp,
                           ),
-                          const SizedBox(width: 6),
+                          SizedBox(width: 6.w),
                           Text(
                             "$_streak streak! 🔥",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                             ),
                           ),
                         ],
@@ -430,9 +431,9 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20.w),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(25.r),
                       gradient: const LinearGradient(
                         colors: [Color(0xFFFFF3E0), Color(0xFFFFE0B2)],
                         begin: Alignment.topLeft,
@@ -441,41 +442,41 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withValues(alpha: 0.12),
-                          blurRadius: 15,
-                          spreadRadius: 2,
+                          blurRadius: 15.r,
+                          spreadRadius: 2.r,
                           offset: const Offset(0, 6),
                         ),
                       ],
                       border: Border.all(
                         color: Colors.white.withValues(alpha: 0.5),
-                        width: 2,
+                        width: 2.w,
                       ),
                     ),
                     child: Column(
                       children: [
                         if (question.image != null)
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                             child: Image.asset(
                               question.image!,
-                              height: 150,
+                              height: 150.h,
                               fit: BoxFit.contain,
                             ),
                           ),
                         if (question.image != null)
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12.h),
                         Row(
                           children: [
-                            const Text(
+                            Text(
                               "❓ ",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 24.sp),
                             ),
                             Expanded(
                               child: Text(
                                 question.question,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 22,
+                                style: TextStyle(
+                                  fontSize: 22.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF00ACC1),
                                 ),
@@ -487,12 +488,12 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
 
                   Expanded(
                     child: ListView.separated(
                       itemCount: 4,
-                      separatorBuilder: (_, _) => const SizedBox(height: 10),
+                      separatorBuilder: (_, _) => SizedBox(height: 10.h),
                       itemBuilder: (context, index) {
                         return _optionCard(
                           option: question.options[index],
@@ -503,7 +504,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                     ),
                   ),
 
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
 
                   SizedBox(
                     width: double.infinity,
@@ -513,11 +514,11 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                             ? Colors.green
                             : Colors.grey.shade300,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 14,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 14.h,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
                         elevation: 8,
                         shadowColor: selectedIndex != -1 && !_showFeedback
@@ -534,19 +535,19 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                             questionNumber < AppConstants.ques.length - 1
                                 ? "Next Question"
                                 : "See Results 🎯",
-                            style: const TextStyle(
-                              fontSize: 18,
+                            style: TextStyle(
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8.w),
                           const Icon(Icons.arrow_forward_rounded),
                         ],
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                 ],
               ),
             ),
@@ -592,16 +593,16 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: borderColor, width: 3),
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(color: borderColor, width: 3.w),
         boxShadow: [
           BoxShadow(
             color: borderColor.withValues(alpha: 0.2),
-            blurRadius: 8,
-            spreadRadius: 1,
+            blurRadius: 8.r,
+            spreadRadius: 1.r,
             offset: const Offset(0, 4),
           ),
         ],
@@ -615,8 +616,8 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
         child: Row(
           children: [
             Container(
-              width: 36,
-              height: 36,
+              width: 36.r,
+              height: 36.r,
               decoration: BoxDecoration(
                 color: isSelected && !_showFeedback
                     ? Colors.blue
@@ -634,7 +635,7 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                       : showWrong
                       ? Colors.red
                       : Colors.grey.shade400,
-                  width: 2,
+                  width: 2.w,
                 ),
               ),
               child: Center(
@@ -645,33 +646,33 @@ class _QuizState extends State<Quiz> with SingleTickerProviderStateMixin {
                         ? Colors.white
                         : Colors.black87,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                   ),
                 ),
               ),
             ),
-            const SizedBox(width: 14),
+            SizedBox(width: 14.w),
             Expanded(
               child: Text(
                 option,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
                   color: textColor,
                 ),
               ),
             ),
             if (_showFeedback && showCorrect)
-              const Icon(
+              Icon(
                 Icons.check_circle_rounded,
                 color: Colors.green,
-                size: 28,
+                size: 28.sp,
               ),
             if (_showFeedback && showWrong)
-              const Icon(
+              Icon(
                 Icons.cancel_rounded,
                 color: Colors.red,
-                size: 28,
+                size: 28.sp,
               ),
           ],
         ),

@@ -1,24 +1,25 @@
 // ignore_for_file: constant_identifier_names
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ConstantDimensions {
-  static const double heightExtraSmall = 6;
-  static const double heightSmall = 10;
-  static const double heightSmall_Medium = 16;
-  static const double heightMedium = 20;
-  static const double heightMedium_Large = 28;
-  static const double heightLarge = 30;
-  static const double heightExtraLarge = 50;
+  static double get heightExtraSmall => 6.h;
+  static double get heightSmall => 10.h;
+  static double get heightSmall_Medium => 16.h;
+  static double get heightMedium => 20.h;
+  static double get heightMedium_Large => 28.h;
+  static double get heightLarge => 30.h;
+  static double get heightExtraLarge => 50.h;
 
-  static const double widthExtraSmall = 6;
-  static const double widthSmall = 10;
-  static const double widthSmall_Medium = 16;
-  static const double widthMedium = 20;
-  static const double widthMedium_Large = 28;
-  static const double widthLarge = 30;
-  static const double widthExtraLarge = 50;
+  static double get widthExtraSmall => 6.w;
+  static double get widthSmall => 10.w;
+  static double get widthSmall_Medium => 16.w;
+  static double get widthMedium => 20.w;
+  static double get widthMedium_Large => 28.w;
+  static double get widthLarge => 30.w;
+  static double get widthExtraLarge => 50.w;
 
-  static const double heightSmallImage = 325;
-  static const double heightBigImage = 350;
+  static double get heightSmallImage => 325.h;
+  static double get heightBigImage => 350.h;
 
   static const List<double> exceptions = [135, 375, 5];
 }
